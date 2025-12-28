@@ -17,7 +17,11 @@
 html {
     scroll-behavior: smooth;
 }
+header, nav, article, footer, #scrollTopBtn {
+    transition: all 0.5s ease;
+}
 
+/* Dark mode*/
 .dark-mode {
     --bg-color: #1b1e22;
     --primary: #4da3ff;
@@ -27,7 +31,6 @@ html {
     --text-light: #ffffff;
     --card-bg: #2a2f35;
     --back: #252525;
-
     --shadow: 0 4px 15px rgba(0,0,0,0.35);
 }
 .dark-toggle {
@@ -44,7 +47,6 @@ html {
 
 .dark-toggle svg {
     position: absolute;
-
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
@@ -68,21 +70,24 @@ html {
         font-size: 28px;
     }
 }
+
+/* Body */
+
 body:not(.dark-mode) #icon-moon {
     opacity: 1;
     transform: rotate(0deg) scale(1);
 }
 
 body {
-
-
     background: var(--bg-color);
     font-family: "Segoe UI", Tahoma, sans-serif;
     color: var(--text-dark);
     line-height: 1.6;
     padding: 20px;
+    transition: all 0.5s ease;
 }
 
+/* Header */
 header {
     position: relative;
     background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -111,6 +116,7 @@ header p {
     }
 }
 
+/* Navigace */
 nav {
     background: var(--accent);
     justify-content: space-around;
@@ -138,7 +144,7 @@ nav a:hover {
     transform: translateY(-3px);
 }
 
-
+/* Main */
 .main {
     margin-top: 30px;
     display: grid;
@@ -153,24 +159,24 @@ nav a:hover {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
 }
-
-.main a {
+a {
     text-decoration: none;
     color: var(--text-dark);
 }
+/* Arcticle */
 article {
     background: var(--card-bg);
     padding: 25px;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
-    animation: fadeIn 0.5s ease;
+    margin: 5px;
 }
 
 article h1 {
     text-align: center;
     margin-bottom: 15px;
 }
-
+/* Seznam */
 article ul {
     list-style: none;
 }
@@ -189,6 +195,7 @@ article li:hover {
     color: var(--text-light);
     padding-left: 20px;
 }
+
 ul li a {
     display: block;            
     padding: 10px 14px;
@@ -204,6 +211,9 @@ ul li a:hover {
     color: var(--text-light);
     padding-left: 20px;
 }
+
+/* Footer */
+
 footer {
     margin-top: 40px;
     text-align: center;
@@ -211,17 +221,14 @@ footer {
     color: var(--text-dark);
     font-size: 16px;
 }
-a {
-    text-decoration: none;
-    color: var(--text-dark);
-}
+
 footer svg {
     margin: 10px;
+    padding: 5px;
+    border: var(--card-bg) 2px solid;
+    border-radius: 5px;
 }
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+
 
 @media (max-width: 768px) {
     .main {
@@ -234,131 +241,9 @@ footer svg {
     }
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse; 
-    margin-top: 20px;
-    box-shadow: var(--shadow);
-    border-radius: var(--radius);
-    overflow: hidden;
-    background-color: var(--card-bg);
-}
-
-th, td {
-    padding: 12px 15px;
-    text-align: left;
-}
-
-th {
-    background: linear-gradient(180deg, var(--primary), var(--secondary));;
-    color: var(--text-light);
-    font-weight: 600;
-}
-tr {
-    transition: all 0.5s ease;
-}
-tr:nth-child(even) {
-    background-color: var(--bg-color);
-}
-
-tr:hover {
-    color: var(--card-bg);
-    background-color: var(--primary);
-    transform: scale(1.01);
-    transition: all 0.3s ease;
-}
-
-th td {
-    font-weight: bold;
-}
-
-@media (max-width: 768px) {
-    table, thead, tbody, th, td, tr {
-        display: block;
-        width: 100%;
-    }
-
-    thead {
-        display: none; 
-    }
-
-    tr {
-        background: var(--back-light); 
-        margin-bottom: 15px;
-        border-radius: var(--radius);
-        padding: 10px;
-        box-shadow: var(--shadow);
-    }
-
-    td {
-        position: relative;
-        padding: 10px 10px 10px 50%;
-        text-align: left;
-        border-bottom: 1px solid var(--back-dark);
-    }
-    td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-weight: bold;
-        color: var(--primary);
-        white-space: nowrap;
-    }
-
-    tr td:last-child {
-        border-bottom: none;
-    }
-    tr:hover {
-        background-color: inherit !important;
-        color: inherit !important;
-        transform: none !important;
-    }
-}
-
-.photos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px;
-}
-
-.photos img {
-    width: 300px;
-    margin: 20px;
-    object-fit: cover; 
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-}
-
-.photos img:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 768px) {
-    .photos {
-        grid-template-columns: 1fr;
-    }
-
-    .photos img {
-        width: 100%;
-        max-width: 350px;
-        height: auto;
-        margin: auto;
-    }
-}
 @media (max-width: 768px) {
     #index {
-        grid-template-columns: 1fr;  
         text-align: center;
-    }
-
-    #index img {
-        max-width: 300px;
-        margin: 0 auto 20px auto;
     }
 
     #index article ul {
@@ -367,6 +252,8 @@ th td {
         margin: auto;
     }
 }
+
+/* Scroll to top */
 
 #scrollTopBtn {
     position: fixed;
@@ -394,19 +281,11 @@ th td {
     transform: scale(1);
 }
 
-
 #scrollTopBtn:hover {
     border-color: var(--primary);
     transform: scale(1.15);
     background: var(--secondary);
 }
-
-#scrollTopBtn.pulse svg {
-    animation: pulse 1.2s ease-in-out;
-}
-
-@keyframes pulse {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-    100% { transform: translateY(0); }
+.i h2 {
+    text-align: center;
 }
