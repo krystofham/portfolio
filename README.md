@@ -27,4 +27,4 @@ Projekt lze navštívit: https://krystofham.github.io/portfolio
 Projekt lze spustit lokálně otevřením souboru:
 
 ```bash
-index.html]
+index.html
