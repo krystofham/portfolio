@@ -19,8 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
         </button>
     </header>
     <nav>
-        <a href="index.html">Informace</a>
-        <a href="projects.html">Projekty</a>
+            <a href="index.html">Informace</a>
+            <a href="projects.html">Projekty</a>
+            <a href="contact.html">Kontakt</a>
+        <button class="hamburger" aria-label="Otevřít menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
     `;
 

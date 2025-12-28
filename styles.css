@@ -2,12 +2,12 @@
     --bg-color: #f1f3f5;
     --primary: #176b87;
     --secondary: #3f8ebf;
-    --accent: #cce5ff;
+    --accent: #add5ff;
     --text-dark: #1a1a1a;
     --text-light: #f9f9f9;
     --card-bg: #ffffff;
     --back: #ccc;
-
+    --contrast: #1a1a1a;
     --radius: 14px;
     --transition: 0.3s ease;
 
@@ -17,7 +17,7 @@
 html {
     scroll-behavior: smooth;
 }
-header, nav, article, footer, #scrollTopBtn {
+header, nav, article, #scrollTopBtn {
     transition: all 0.5s ease;
 }
 
@@ -31,8 +31,11 @@ header, nav, article, footer, #scrollTopBtn {
     --text-light: #ffffff;
     --card-bg: #2a2f35;
     --back: #252525;
+    --contrast: #f1f1f1;
     --shadow: 0 4px 15px rgba(0,0,0,0.35);
 }
+
+
 .dark-toggle {
     position: absolute;
     top: 15px;
@@ -122,10 +125,63 @@ nav {
     justify-content: space-around;
     display: flex; 
     align-items: center;
-    padding: 15px 10px;
+    padding: 15px 20px;
     border-radius: 0 0 var(--radius) var(--radius);
     box-shadow: var(--shadow);
 }
+
+
+/* Hamburger pro mobil */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+/* Mobilní menu */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;          /* start hidden */
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .nav-links.active {
+        max-height: 500px;       /* dostatečná výška pro všechny odkazy */
+    }
+
+    nav {
+        justify-content: space-between;
+    }
+
+    nav a {
+        padding: 15px 0;
+        width: 100%;
+        text-align: center;
+        border-radius: 0;
+    }
+
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
 
 nav a {
     text-decoration: none;
@@ -136,7 +192,7 @@ nav a {
     border-radius: var(--radius);
     transition: transform 0.3s ease, border-bottom 0.3s ease;
     border-bottom: 2px solid transparent; 
-    display: inline-block; 
+    display: inline-block;  
 }
 
 nav a:hover {
@@ -170,6 +226,7 @@ article {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     margin: 5px;
+    border: 2px solid var(--accent);
 }
 
 article h1 {
@@ -225,7 +282,7 @@ footer {
 footer svg {
     margin: 10px;
     padding: 5px;
-    border: var(--card-bg) 2px solid;
+    border: var(--contrast) 2px solid;
     border-radius: 5px;
 }
 
@@ -288,4 +345,65 @@ footer svg {
 }
 .i h2 {
     text-align: center;
+}
+/* Contact */
+.contact {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+    text-align: center;
+
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.contact h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* Kontejner na ikonky */
+.contact a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 15px;
+    color: var(--primary);
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* Hover efekt */
+.contact a:hover {
+    transform: translateY(-4px) scale(1.1);
+    color: var(--secondary);
+}
+
+/* Velikost ikon */
+.contact svg {
+    padding: 10px;
+    border: 2px solid var(--primary);
+    border-radius: 15px;
+    width: 78px;
+    height: 78px;
+}
+.contact .not_important svg {
+    width: 48px;
+    height: 48px;
+}
+/* Mobil */
+@media (max-width: 768px) {
+    .contact {
+        margin: 30px 10px;
+        padding: 20px;
+    }
+
+    .contact h2 {
+        font-size: 26px;
+    }
+
+    .contact svg {
+        width: 42px;
+        height: 42px;
+    }
 }

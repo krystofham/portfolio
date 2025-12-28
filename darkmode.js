@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
+
+    // --- Dark mode ---
     const modeSwitcher = document.getElementById('mode-switcher');
     const body = document.body;
     const currentMode = localStorage.getItem('mode');
@@ -7,10 +9,33 @@ document.addEventListener("DOMContentLoaded", function() {
         body.classList.add('dark-mode');
     }
 
-    modeSwitcher.addEventListener('click', function() {
-        body.classList.toggle('dark-mode');
-        const mode = body.classList.contains('dark-mode') ? 'dark' : 'light';
-        localStorage.setItem('mode', mode);
-        updateButtonText();
+    if (modeSwitcher) {
+        modeSwitcher.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const mode = body.classList.contains('dark-mode') ? 'dark' : 'light';
+            localStorage.setItem('mode', mode);
+        });
+    }
+
+    // --- Scroll top button ---
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            scrollBtn.classList.add("visible");
+        } else {
+            scrollBtn.classList.remove("visible");
+        }
     });
+    scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // --- Hamburger menu ---
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    }
 });
