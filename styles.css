@@ -83,7 +83,7 @@ body:not(.dark-mode) #icon-moon {
 
 body {
     background: var(--bg-color);
-    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: var(--text-dark);
     line-height: 1.6;
     padding: 20px;
