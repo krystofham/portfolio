@@ -16,6 +16,9 @@ Web slouží jako přehledná osobní prezentace.
 - CSS
 - JavaScript
 - GitHub Pages
+- Google Lighthouse
+- Polypane
+- Claude Anthropic
 
 ## Struktura projektu
 - `index.html` – O mně
