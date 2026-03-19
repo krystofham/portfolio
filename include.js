@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <header>
         <h1>Kryštof Ham</h1>
         <p>Student</p>
-        <button class="dark-toggle" id="mode-switcher">
+        <button class="dark-toggle" id="mode-switcher" aria-label="Přepnout barevný režim">
             <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="28" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                 <path stroke-linecap="round" stroke-linejoin="round"
                     d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75
