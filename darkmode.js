@@ -1,31 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ────────────────────────────────────────
-     1. DARK MODE
+/* ────────────────────────────────────────
+    1. DARK MODE
   ──────────────────────────────────────── */
-  const modeSwitcher = document.getElementById("mode-switcher");
-  const body = document.body;
+const modeSwitcher = document.getElementById("mode-switcher");
+const body = document.body;
 
-  if (localStorage.getItem("mode") === "dark") {
+if (localStorage.getItem("mode") === "dark") {
     body.classList.add("dark-mode");
-  }
+}
 
-  if (modeSwitcher) {
-    modeSwitcher.addEventListener("click", () => {
-      body.classList.toggle("dark-mode");
-      localStorage.setItem("mode", body.classList.contains("dark-mode") ? "dark" : "light");
+if (modeSwitcher) {
+        modeSwitcher.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        localStorage.setItem("mode", body.classList.contains("dark-mode") ? "dark" : "light");
     });
-  }
+}
 
-  /* ────────────────────────────────────────
-     2. NAVBAR — scroll state + active link
+/* ────────────────────────────────────────
+    2. NAVBAR — scroll state + active link
   ──────────────────────────────────────── */
-  const navbar = document.querySelector(".navbar");
+const navbar = document.querySelector(".navbar");
 
-  if (navbar) {
+if (navbar) {
     const onScroll = () => {
-      navbar.classList.toggle("scrolled", window.scrollY > 10);
-    };
+    navbar.classList.toggle("scrolled", window.scrollY > 10);
+};
     window.addEventListener("scroll", onScroll, { passive: true });
 
     // Mark active link
