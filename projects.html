@@ -1,99 +1,279 @@
 <!DOCTYPE html>
 <html lang="cs">
+
 <head>
-    
-    <meta name="description" content="Portfolio Kryštofa Hama - IT student">
-    <meta name="author" content="Kryštof Ham">
-    <meta name="keywords" content="Životopis, Kryštof Ham">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kryštof Ham</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Kryštof Ham — Projekty: Testolingo, F1 simulátor, Portfolio a další.">
+    <meta name="author" content="Kryštof Ham">
+    <title>Projekty — Kryštof Ham</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <script src="darkmode.js" defer></script>  
-<header>
-    <h1>Kryštof Ham</h1>
-    <p>Student</p>
-    <button class="dark-toggle" id="mode-switcher" aria-label="Přepnout barevný režim">
-        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="28" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75
-                    0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3
-                    11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0
-                    9.002-5.998Z" />
-        </svg>
-        <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="28" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-        </svg>
-    </button>
-</header>
-<nav>
-        <a href="index.html">Informace</a>
+    <script src="darkmode.js" defer></script>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" aria-label="Hlavní navigace">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__logo">KH</a>
+            <div class="navbar__links">
+                <a href="index.html">Úvod</a>
+                <a href="about.html">O mně</a>
+                <a href="projects.html">Projekty</a>
+                <a href="gallery.html">Galerie</a>
+                <a href="contact.html">Kontakt</a>
+            </div>
+            <button class="dark-toggle" id="mode-switcher" aria-label="Přepnout barevný režim">
+                <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                </svg>
+                <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                </svg>
+            </button>
+            <button class="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" role="dialog" aria-label="Mobilní navigace">
+        <a href="index.html">Úvod</a>
+        <a href="about.html">O mně</a>
         <a href="projects.html">Projekty</a>
+        <a href="gallery.html">Galerie</a>
         <a href="contact.html">Kontakt</a>
-</nav>
-    <main class="main">
-    
-        <h1>Projekty</h1>
+    </div>
 
-        <article class="project">
-            <h2><a href="https://krystofham.pythonanywhere.com/" target="_blank" style="text-decoration: underline;">Testolingo</a></h2>
-            <div class="popisek">
-                Web počítající denní řadu, kdy měl člověk těstoviny.
-            </div>
+    <main>
+        <!-- PAGE HEADER -->
+        <header class="page-header">
+            <p class="label">Stránka 03</p>
+            <h1>Projekty</h1>
+        </header>
 
-            <a href="https://github.com/krystofham/testolingo" target="_blank">
-                <svg width=40  role="img" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                </svg>
-            </a><br>
-        </article>
+        <div class="container">
 
-        <article class="project">
-            <h2>F1 simulátor</h2>
-            <div class="popisek">
-                Projekt v Pythonu, který simuluje motorsportovou kariéru, kdy člověk ovládá celý tým, řeší, kdy jít do boxu, dělá strategie a nastavení vozu.
-            </div>
-            <a href="https://github.com/krystofham/F1_game" target="_blank">
-                <svg width=40  role="img" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                </svg>
-            </a><br>
-        </article>
+            <!-- INTRO -->
+            <p class="reveal"
+                style="font-size:1.05rem; max-width:600px; color:var(--muted); margin-bottom: clamp(2rem,5vw,4rem);">
+                Reálné projekty, na kterých jsem pracoval. Každý z nich zastupuje konkrétní oblast,
+                které se věnuji — webový vývoj, Python, algoritmizace.
+            </p>
 
-        <article class="project">
-            <h2>Portfolio</h2>
-            <div class="popisek">
-                Shrnutí aktuálních velkých projektů, základní informace o mně.
-            </div>
-            <a href="https://github.com/krystofham/portfolio" target="_blank">
-                <svg width=40  role="img" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-                </svg>
-            </a><br>
-        </article>
+            <!-- PROJECT CARDS -->
+            <div class="project-grid">
+
+                <!-- Testolingo -->
+                <article class="project-card reveal" aria-label="Projekt Testolingo">
+                    <div class="project-card__header">
+                        <p class="project-card__index">Projekt — 01</p>
+                        <h2 class="project-card__title">Testolingo</h2>
+                        <div class="tags" style="margin-top:0.75rem;">
+                            <span class="tag"
+                                style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;font-size:0.68rem;">Python</span>
+                            <span class="tag"
+                                style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;font-size:0.68rem;">Flask</span>
+                            <span class="tag"
+                                style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;font-size:0.68rem;">Web
+                                app</span>
+                        </div>
+                    </div>
+                    <div class="project-card__body">
+                        <p class="project-card__desc">
+                            Webová aplikace počítající denní řadu — kolikátý den v řadě měl uživatel těstoviny.
+                            Backend v Pythonu (Flask), nasazeno na PythonAnywhere.
+                        </p>
+                        <ul class="list-bullet" style="font-size:0.85rem;">
+                            <li>Denní série / streak tracking</li>
+                            <li>Persistentní uložení dat</li>
+                            <li>Live nasazení online</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <a href="https://krystofham.pythonanywhere.com/" target="_blank" rel="noopener"
+                                class="btn-solid">
+                                <svg width="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                </svg>
+                                Live ukázka
+                            </a>
+                            <a href="https://github.com/krystofham/testolingo" target="_blank" rel="noopener"
+                                class="btn-ghost">
+                                <svg width="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- F1 simulátor -->
+                <article class="project-card reveal" aria-label="Projekt F1 simulátor">
+                    <div class="project-card__header">
+                        <p class="project-card__index">Projekt — 02</p>
+                        <h2 class="project-card__title">F1 simulátor</h2>
+                        <div class="tags" style="margin-top:0.75rem;">
+                            <span class="tag"
+                                style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;font-size:0.68rem;">Python</span>
+                            <span class="tag"
+                                style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;font-size:0.68rem;">CLI</span>
+                            <span class="tag"
+                                style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;font-size:0.68rem;">Simulace</span>
+                        </div>
+                    </div>
+                    <div class="project-card__body">
+                        <p class="project-card__desc">
+                            Python projekt simulující motorsportovou kariéru — hráč ovládá celý tým,
+                            řeší zastávky v boxech, strategie pneumatik a nastavení vozu.
+                        </p>
+                        <ul class="list-bullet" style="font-size:0.85rem;">
+                            <li>Správa celého závodního týmu</li>
+                            <li>Strategie pneumatik a zastávky</li>
+                            <li>Nastavení vozu a vývoj sezóny</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <a href="https://github.com/krystofham/F1_game" target="_blank" rel="noopener"
+                                class="btn-solid">
+                                <svg width="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Portfolio -->
+                <article class="project-card reveal" aria-label="Projekt Portfolio">
+                    <div class="project-card__header">
+                        <p class="project-card__index">Projekt — 03</p>
+                        <h2 class="project-card__title">Portfolio</h2>
+                        <div class="tags" style="margin-top:0.75rem;">
+                            <span class="tag"
+                                style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;font-size:0.68rem;">HTML</span>
+                            <span class="tag"
+                                style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;font-size:0.68rem;">CSS</span>
+                            <span class="tag"
+                                style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#fff;font-size:0.68rem;">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="project-card__body">
+                        <p class="project-card__desc">
+                            Tato stránka — osobní portfolio prezentující projekty, dovednosti a kontakty.
+                            Statický web bez frameworků, nasazeno přes GitHub Pages.
+                        </p>
+                        <ul class="list-bullet" style="font-size:0.85rem;">
+                            <li>Dark mode &amp; responzivní design</li>
+                            <li>Optimalizováno pro Lighthouse</li>
+                            <li>View Transitions API</li>
+                        </ul>
+                        <div class="project-card__footer">
+                            <a href="https://krystofham.github.io/portfolio" target="_blank" rel="noopener"
+                                class="btn-solid">
+                                <svg width="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                </svg>
+                                Live ukázka
+                            </a>
+                            <a href="https://github.com/krystofham/portfolio" target="_blank" rel="noopener"
+                                class="btn-ghost">
+                                <svg width="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                                </svg>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div><!-- /project-grid -->
+
+            <!-- TECH USED TABLE -->
+            <section class="section" aria-labelledby="tech-heading">
+                <div class="section-head reveal">
+                    <h2 id="tech-heading">Přehled technologií v projektech</h2>
+                </div>
+                <div class="table-wrap reveal">
+                    <table aria-label="Přehled technologií v projektech">
+                        <thead>
+                            <tr>
+                                <th scope="col">Projekt</th>
+                                <th scope="col">Jazyk / Framework</th>
+                                <th scope="col">Nasazení</th>
+                                <th scope="col">Stav</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Testolingo</strong></td>
+                                <td>Python, Flask, HTML/CSS</td>
+                                <td>PythonAnywhere</td>
+                                <td><span class="td-badge td-badge--green">Live</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>F1 simulátor</strong></td>
+                                <td>Python (CLI)</td>
+                                <td>GitHub</td>
+                                <td><span class="td-badge td-badge--yellow">Vývoj</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Portfolio</strong></td>
+                                <td>HTML, CSS, JavaScript</td>
+                                <td>GitHub Pages</td>
+                                <td><span class="td-badge td-badge--green">Live</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div><!-- /container -->
     </main>
 
-<footer>
-    <a href="https://www.linkedin.com/in/kry%C5%A1tof-ham-bb79533a1/" aria-label="LinkedIn" target="_blank">
-        <svg  width=40 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.266 2.37 4.266 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"/>
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__inner">
+            <div>
+                <p class="footer__brand">Kryštof Ham</p>
+                <p class="footer__copy">© 2026 — Student, vývojář, sportovec.</p>
+            </div>
+            <div class="footer__links">
+                <a href="https://www.linkedin.com/in/kry%C5%A1tof-ham-bb79533a1/" class="footer__icon"
+                    aria-label="LinkedIn" target="_blank" rel="noopener">
+                    <svg width="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.266 2.37 4.266 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/krystofham/" class="footer__icon" aria-label="GitHub" target="_blank"
+                    rel="noopener">
+                    <svg width="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" title="Nahoru" aria-label="Zpět nahoru">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+            fill="none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
         </svg>
-    </a>
-
-    <a href="https://github.com/krystofham/" target="_blank">
-    <svg width=40  role="img" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-    </svg></a><br>
-    <a href="mailto:krystof.ham@proton.me"><p>krystof.ham@proton.me</p></a>
-    Kryštof Ham 2025
-</footer>
-<button id="scrollTopBtn" title="Nahoru">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none">
-        <path stroke-linecap="round" stroke-linejoin="round"
-                d="m9 9 6-6m0 0 6 6m-6-6v12a6 6 0 0 1-12 0v-3" />
-    </svg>
-</button>
-
+    </button>
 </body>
+
 </html>

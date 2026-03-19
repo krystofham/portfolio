@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kryštof Ham — O mně, dovednosti, zkušenosti a plány do budoucna.">
+    <meta name="author" content="Kryštof Ham">
+    <title>O mně — Kryštof Ham</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <script src="darkmode.js" defer></script>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" aria-label="Hlavní navigace">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__logo">KH</a>
+            <div class="navbar__links">
+                <a href="index.html">Úvod</a>
+                <a href="about.html">O mně</a>
+                <a href="projects.html">Projekty</a>
+                <a href="gallery.html">Galerie</a>
+                <a href="contact.html">Kontakt</a>
+            </div>
+            <button class="dark-toggle" id="mode-switcher" aria-label="Přepnout barevný režim">
+                <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                </svg>
+                <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                </svg>
+            </button>
+            <button class="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" role="dialog" aria-label="Mobilní navigace">
+        <a href="index.html">Úvod</a>
+        <a href="about.html">O mně</a>
+        <a href="projects.html">Projekty</a>
+        <a href="gallery.html">Galerie</a>
+        <a href="contact.html">Kontakt</a>
+    </div>
+
+    <main>
+        <!-- PAGE HEADER -->
+        <header class="page-header">
+            <p class="label">Stránka 01</p>
+            <h1>O&nbsp;mně</h1>
+        </header>
+
+        <div class="container">
+
+            <!-- ── BIO CARD ─────────────────────────── -->
+            <section class="section" aria-labelledby="bio-heading">
+                <div class="section-head reveal">
+                    <h2 id="bio-heading">Kdo jsem</h2>
+                </div>
+                <div class="grid-2">
+                    <div class="card reveal">
+                        <p class="label mb-2">Student</p>
+                        <p style="font-size:1rem; line-height:1.75;">
+                            Jsem student <a href="https://www.spseiostrava.cz/cs/" target="_blank" rel="noopener"
+                                style="color:var(--blue);text-decoration:underline;text-underline-offset:3px;">Střední
+                                průmyslové školy elektrotechniky a informatiky v Ostravě</a>. Aktivně se věnuji webovému
+                            vývoji a Pythonu, hledám stáž nebo praxi v IT.
+                        </p>
+                        <div class="tags mt-4">
+                            <span class="tag">Ostrava</span>
+                            <span class="tag">IT student</span>
+                            <span class="tag tag--blue">Stáž / praxe</span>
+                        </div>
+                    </div>
+                    <div class="card card--dark reveal">
+                        <p class="label mb-2" style="color:rgba(255,255,255,0.4);">Jazyky</p>
+                        <ul class="list-bullet" style="color:var(--white);">
+                            <li>Čeština — rodný jazyk</li>
+                            <li>Angličtina — B1 (aktivně rozvíjím)</li>
+                            <li>Španělština — základy</li>
+                        </ul>
+                        <p class="label mt-4 mb-2" style="color:rgba(255,255,255,0.4);">Zájmy</p>
+                        <ul class="list-bullet" style="color:var(--white);">
+                            <li>Florbal</li>
+                            <li>Matematika &amp; fyzika</li>
+                            <li>Formule 1</li>
+                            <li>Knihy</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- ── SKILLS TABLE ─────────────────────── -->
+            <section class="section" aria-labelledby="skills-heading">
+                <div class="section-head reveal">
+                    <h2 id="skills-heading">Dovednosti</h2>
+                    <span class="label">Přehled technologií</span>
+                </div>
+                <div class="table-wrap reveal">
+                    <table class="sortable" aria-label="Tabulka dovedností">
+                        <thead>
+                            <tr>
+                                <th scope="col">Technologie</th>
+                                <th scope="col">Oblast</th>
+                                <th scope="col">Úroveň</th>
+                                <th scope="col">Používám k</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>HTML</strong></td>
+                                <td>Frontend</td>
+                                <td><span class="td-badge td-badge--green">Pokročilý</span></td>
+                                <td>Tvorba struktury webů, sémantické značkování</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CSS</strong></td>
+                                <td>Frontend</td>
+                                <td><span class="td-badge td-badge--green">Pokročilý</span></td>
+                                <td>Responzivní design, animace, CSS Grid &amp; Flexbox</td>
+                            </tr>
+                            <tr>
+                                <td><strong>JavaScript</strong></td>
+                                <td>Frontend</td>
+                                <td><span class="td-badge td-badge--yellow">Středně pokročilý</span></td>
+                                <td>Interaktivita, DOM manipulace, bez frameworků</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Python</strong></td>
+                                <td>Backend</td>
+                                <td><span class="td-badge td-badge--green">Pokročilý</span></td>
+                                <td>Skripty, automatizace, webové aplikace</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Flask</strong></td>
+                                <td>Backend</td>
+                                <td><span class="td-badge td-badge--yellow">Středně pokročilý</span></td>
+                                <td>Webové aplikace s backendem</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Git</strong></td>
+                                <td>Nástroje</td>
+                                <td><span class="td-badge td-badge--green">Pokročilý</span></td>
+                                <td>Verzování kódu, GitHub repozitáře</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SQL</strong></td>
+                                <td>Databáze</td>
+                                <td><span class="td-badge td-badge--yellow">Základy</span></td>
+                                <td>Dotazy, základní správa databáze</td>
+                            </tr>
+                            <tr>
+                                <td><strong>C</strong></td>
+                                <td>Systémové</td>
+                                <td><span class="td-badge td-badge--yellow">Základy</span></td>
+                                <td>Školní projekty, algoritmizace</td>
+                            </tr>
+                            <tr>
+                                <td><strong>React</strong></td>
+                                <td>Frontend</td>
+                                <td><span class="td-badge td-badge--blue">Učím se</span></td>
+                                <td>Plánuji rozvinout</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Django</strong></td>
+                                <td>Backend</td>
+                                <td><span class="td-badge td-badge--blue">Učím se</span></td>
+                                <td>Plánuji rozvinout</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-muted mt-2 reveal" style="font-size:0.8rem;">Tip: klikni na záhlaví sloupce pro řazení.
+                </p>
+            </section>
+
+            <hr class="divider">
+
+            <!-- ── CERTIFICATIONS — numbered list ────── -->
+            <section class="section" aria-labelledby="certs-heading">
+                <div class="section-head reveal">
+                    <h2 id="certs-heading">Certifikace</h2>
+                </div>
+                <div class="card reveal">
+                    <ol class="list-numbered">
+                        <li>
+                            <a href="https://www.freecodecamp.org/certification/krystofham/b1-english-for-developers"
+                                target="_blank" rel="noopener"
+                                style="color:var(--blue);text-decoration:underline;text-underline-offset:3px;">
+                                B1 English for Developers — freeCodeCamp
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.freecodecamp.org/certification/krystofham/responsive-web-design-v9"
+                                target="_blank" rel="noopener"
+                                style="color:var(--blue);text-decoration:underline;text-underline-offset:3px;">
+                                Responsive Web Design — freeCodeCamp
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- ── COMPETITIONS — achievement cards ───── -->
+            <section class="section" aria-labelledby="comp-heading">
+                <div class="section-head reveal">
+                    <h2 id="comp-heading">Soutěže</h2>
+                </div>
+                <div class="grid-2">
+                    <div class="achievement reveal">
+                        <div class="achievement__icon">🥉</div>
+                        <div class="achievement__text">
+                            <strong>3. místo — Office aréna 2025, celorepublikové kolo</strong>
+                            <a href="https://soutezarena.cz/soutez/finale/vysledky-finale/" target="_blank"
+                                rel="noopener">Zobrazit výsledky →</a>
+                        </div>
+                    </div>
+                    <div class="achievement reveal">
+                        <div class="achievement__icon">🥇</div>
+                        <div class="achievement__text">
+                            <strong>1. místo — Pangea, mezirepublikové srovnání</strong>
+                            <a href="https://drive.google.com/drive/u/0/folders/1Gm64XfbIMFXJlwH_omer7OEyvSWeBQXF"
+                                target="_blank" rel="noopener">Zobrazit certifikát →</a>
+                        </div>
+                    </div>
+                    <div class="achievement reveal">
+                        <div class="achievement__icon">✓</div>
+                        <div class="achievement__text">
+                            <strong>Úspěšný řešitel — okresní kolo v programování</strong>
+                            Soutěž v algoritmizaci a programování
+                        </div>
+                    </div>
+                    <div class="achievement reveal">
+                        <div class="achievement__icon">5.</div>
+                        <div class="achievement__text">
+                            <strong>5. místo — Tematické kódování</strong>
+                            <a href="https://soutez.tib.cz/souteze/kodovani/260-rocnik-3-2024-2025" target="_blank"
+                                rel="noopener">Zobrazit výsledky →</a>
+                        </div>
+                    </div>
+                    <div class="achievement reveal">
+                        <div class="achievement__icon">~</div>
+                        <div class="achievement__text">
+                            <strong>3 483. místo — Logická olympiáda (lépe než 82 % účastníků)</strong>
+                            <a href="https://drive.google.com/drive/folders/1q0Rht7FMbccOjbuSyVsOZaCQq4-BKSLP"
+                                target="_blank" rel="noopener">Zobrazit certifikát →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- ── SEMINARS — bullet list ────────────── -->
+            <section class="section" aria-labelledby="sem-heading">
+                <div class="section-head reveal">
+                    <h2 id="sem-heading">Semináře</h2>
+                </div>
+                <div class="card reveal">
+                    <ul class="list-bullet">
+                        <li>
+                            <a href="https://fykos.cz/poradi" target="_blank" rel="noopener"
+                                style="color:var(--blue);text-decoration:underline;text-underline-offset:3px;">
+                                Fyzikální korespondenční seminář (FYKOS)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://ksp.mff.cuni.cz/z/ulohy/38/vysledky2.html" target="_blank" rel="noopener"
+                                style="color:var(--blue);text-decoration:underline;text-underline-offset:3px;">
+                                Korespondenční seminář z programování (KSP MFF UK)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <!-- ── LEARNING & PLANS — numbered list ──── -->
+            <section class="section" aria-labelledby="plans-heading">
+                <div class="section-head reveal">
+                    <h2 id="plans-heading">Aktivně se učím &amp; Plány</h2>
+                </div>
+                <div class="grid-2">
+                    <div class="card reveal">
+                        <p class="label mb-3">Právě studuji</p>
+                        <ol class="list-numbered">
+                            <li>JavaScript — DOM, ES6+, async/await</li>
+                            <li>C — ukazatele, paměť, algoritmy</li>
+                        </ol>
+                    </div>
+                    <div class="card reveal">
+                        <p class="label mb-3">Do budoucna</p>
+                        <ol class="list-numbered">
+                            <li>React — komponentový vývoj</li>
+                            <li>WordPress — tvorba a správa webů</li>
+                            <li>Django — pokročilý Python backend</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+        </div><!-- /container -->
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__inner">
+            <div>
+                <p class="footer__brand">Kryštof Ham</p>
+                <p class="footer__copy">© 2026 — Student, vývojář, sportovec.</p>
+            </div>
+            <div class="footer__links">
+                <a href="https://www.linkedin.com/in/kry%C5%A1tof-ham-bb79533a1/" class="footer__icon"
+                    aria-label="LinkedIn" target="_blank" rel="noopener">
+                    <svg width="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.266 2.37 4.266 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/krystofham/" class="footer__icon" aria-label="GitHub" target="_blank"
+                    rel="noopener">
+                    <svg width="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" title="Nahoru" aria-label="Zpět nahoru">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+            fill="none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kryštof Ham — Fotogalerie ze soutěží, studia a aktivit.">
+    <meta name="author" content="Kryštof Ham">
+    <title>Galerie — Kryštof Ham</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Gallery-specific placeholder styling */
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: var(--gray-5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--muted);
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: background var(--transition);
+        }
+
+        .gallery-item:hover .gallery-placeholder {
+            background: var(--gray-4);
+        }
+
+        .dark-mode .gallery-placeholder {
+            background: var(--gray-2);
+        }
+
+        .dark-mode .gallery-item:hover .gallery-placeholder {
+            background: var(--gray-3);
+        }
+
+        /* Gallery filter buttons */
+        .gallery-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: clamp(1.5rem, 4vw, 3rem);
+        }
+
+        .filter-btn {
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 7px 16px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            background: transparent;
+            color: var(--fg);
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        .filter-btn.active {
+            border-color: var(--fg);
+        }
+
+        /* Hide filtered items */
+        .gallery-item[data-cat].hidden {
+            display: none;
+        }
+
+        /* Featured first item — spans 2 cols */
+        @media (min-width: 480px) {
+            .gallery-grid .gallery-item:first-child {
+                grid-column: span 2;
+                aspect-ratio: 2 / 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script src="darkmode.js" defer></script>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" aria-label="Hlavní navigace">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__logo">KH</a>
+            <div class="navbar__links">
+                <a href="index.html">Úvod</a>
+                <a href="about.html">O mně</a>
+                <a href="projects.html">Projekty</a>
+                <a href="gallery.html">Galerie</a>
+                <a href="contact.html">Kontakt</a>
+            </div>
+            <button class="dark-toggle" id="mode-switcher" aria-label="Přepnout barevný režim">
+                <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                </svg>
+                <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                </svg>
+            </button>
+            <button class="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE NAV -->
+    <div class="mobile-nav" role="dialog" aria-label="Mobilní navigace">
+        <a href="index.html">Úvod</a>
+        <a href="about.html">O mně</a>
+        <a href="projects.html">Projekty</a>
+        <a href="gallery.html">Galerie</a>
+        <a href="contact.html">Kontakt</a>
+    </div>
+
+    <main>
+        <!-- PAGE HEADER -->
+        <header class="page-header">
+            <p class="label">Stránka 04</p>
+            <h1>Galerie</h1>
+        </header>
+
+        <div class="container">
+            <p class="reveal"
+                style="font-size:1.05rem; max-width:560px; color:var(--muted); margin-bottom: clamp(1.5rem,4vw,3rem);">
+                Fotky ze soutěží, školy a volného času. Klikni na obrázek pro větší zobrazení.
+            </p>
+
+            <!-- FILTER BUTTONS -->
+            <div class="gallery-filters reveal" role="group" aria-label="Filtrovat galerii">
+                <button class="filter-btn active" data-filter="all">Vše</button>
+                <button class="filter-btn" data-filter="souteze">Soutěže</button>
+                <button class="filter-btn" data-filter="skola">Škola</button>
+                <button class="filter-btn" data-filter="volny-cas">Volný čas</button>
+            </div>
+
+            <!-- GALLERY GRID -->
+            <!-- Replace src values with your actual photo paths. 
+           data-full can point to full-res version, alt is the caption. -->
+            <div class="gallery-grid reveal" id="galleryGrid" role="list">
+
+                <div class="gallery-item" data-cat="souteze" role="listitem" tabindex="0"
+                    aria-label="Office aréna 2025 — 3. místo">
+                    <img src="photos/soutez-office-arena.jpg" data-full="photos/soutez-office-arena.jpg"
+                        alt="Office aréna 2025 — 3. místo, celorepublikové kolo" loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-placeholder" style="display:none;">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span>Office aréna 2025</span>
+                    </div>
+                    <div class="gallery-item__overlay" aria-hidden="true">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-cat="souteze" role="listitem" tabindex="0"
+                    aria-label="Pangea — 1. místo">
+                    <img src="photos/soutez-pangea.jpg" data-full="photos/soutez-pangea.jpg"
+                        alt="Pangea — 1. místo, mezirepublikové srovnání" loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-placeholder" style="display:none;">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span>Pangea 2025</span>
+                    </div>
+                    <div class="gallery-item__overlay" aria-hidden="true">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-cat="skola" role="listitem" tabindex="0" aria-label="SPŠEaI Ostrava">
+                    <img src="photos/skola-spseia.jpg" data-full="photos/skola-spseia.jpg"
+                        alt="SPŠEaI Ostrava — schulní projekt" loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-placeholder" style="display:none;">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span>Škola</span>
+                    </div>
+                    <div class="gallery-item__overlay" aria-hidden="true">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-cat="volny-cas" role="listitem" tabindex="0" aria-label="Florbal">
+                    <img src="photos/florbal.jpg" data-full="photos/florbal.jpg" alt="Florbal — volný čas"
+                        loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-placeholder" style="display:none;">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span>Florbal</span>
+                    </div>
+                    <div class="gallery-item__overlay" aria-hidden="true">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-cat="souteze" role="listitem" tabindex="0" aria-label="KSP seminář">
+                    <img src="photos/ksp.jpg" data-full="photos/ksp.jpg" alt="Korespondenční seminář z programování"
+                        loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-placeholder" style="display:none;">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span>KSP</span>
+                    </div>
+                    <div class="gallery-item__overlay" aria-hidden="true">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-cat="volny-cas" role="listitem" tabindex="0" aria-label="Formule 1">
+                    <img src="photos/f1.jpg" data-full="photos/f1.jpg" alt="Formule 1 — zájem o motorsport"
+                        loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-placeholder" style="display:none;">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span>Formule 1</span>
+                    </div>
+                    <div class="gallery-item__overlay" aria-hidden="true">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-cat="skola" role="listitem" tabindex="0" aria-label="Školní projekt">
+                    <img src="photos/skola-projekt.jpg" data-full="photos/skola-projekt.jpg"
+                        alt="Školní programovací projekt" loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-placeholder" style="display:none;">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span>Projekt</span>
+                    </div>
+                    <div class="gallery-item__overlay" aria-hidden="true">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-cat="volny-cas" role="listitem" tabindex="0" aria-label="Volný čas">
+                    <img src="photos/volny-cas.jpg" data-full="photos/volny-cas.jpg" alt="Volný čas" loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="gallery-placeholder" style="display:none;">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                        </svg>
+                        <span>Volný čas</span>
+                    </div>
+                    <div class="gallery-item__overlay" aria-hidden="true">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                        </svg>
+                    </div>
+                </div>
+
+            </div><!-- /gallery-grid -->
+
+            <p class="text-muted mt-4 reveal" style="font-size:0.82rem;">
+                Fotky přidám brzy — zálohy stále organizuji. Složku <code>photos/</code> přidej do kořene projektu.
+            </p>
+
+        </div><!-- /container -->
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Zvětšená fotka">
+        <button class="lightbox__close" aria-label="Zavřít">
+            <svg width="18" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <img src="" alt="" loading="lazy">
+        <p class="lightbox__caption"></p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__inner">
+            <div>
+                <p class="footer__brand">Kryštof Ham</p>
+                <p class="footer__copy">© 2026 — Student, vývojář, sportovec.</p>
+            </div>
+            <div class="footer__links">
+                <a href="https://www.linkedin.com/in/kry%C5%A1tof-ham-bb79533a1/" class="footer__icon"
+                    aria-label="LinkedIn" target="_blank" rel="noopener">
+                    <svg width="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.266 2.37 4.266 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/krystofham/" class="footer__icon" aria-label="GitHub" target="_blank"
+                    rel="noopener">
+                    <svg width="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" title="Nahoru" aria-label="Zpět nahoru">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+            fill="none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+    <script>
+        // Gallery filter logic
+        document.addEventListener("DOMContentLoaded", () => {
+            const filterBtns = document.querySelectorAll(".filter-btn");
+            const items = document.querySelectorAll(".gallery-item[data-cat]");
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const filter = btn.dataset.filter;
+
+                    filterBtns.forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+
+                    items.forEach(item => {
+                        if (filter === "all" || item.dataset.cat === filter) {
+                            item.classList.remove("hidden");
+                        } else {
+                            item.classList.add("hidden");
+                        }
+                    });
+                });
+            });
+
+            // Keyboard support for gallery items (Enter/Space opens lightbox)
+            items.forEach(item => {
+                item.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        item.click();
+                    }
+                });
+            });
+
+            // Show placeholders for missing images on load
+            document.querySelectorAll(".gallery-item img").forEach(img => {
+                if (!img.complete || img.naturalWidth === 0) {
+                    img.style.display = "none";
+                    const ph = img.nextElementSibling;
+                    if (ph?.classList.contains("gallery-placeholder")) {
+                        ph.style.display = "flex";
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
