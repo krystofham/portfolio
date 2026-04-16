@@ -239,6 +239,9 @@ h3 {
 }
 
 .navbar__links a {
+    position: relative; /* Nutné pro umístění kolečka */
+    z-index: 1;
+    overflow: hidden; /* Aby kolečko nevyteklo ven z borderu */
     font-size: 0.82rem;
     font-weight: 500;
     letter-spacing: 0.06em;
@@ -247,19 +250,37 @@ h3 {
     padding: 6px 14px;
     border-radius: var(--radius-sm);
     border: 1px solid transparent;
-    transition: border-color var(--transition), background var(--transition), color var(--transition);
+    transition: color var(--transition); /* Barvu textu měníme plynule */
 }
 
+/* Vytvoření samotného kolečka */
+.navbar__links a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--nav-fg); /* Barva výplně */
+    border-radius: 50%; /* Dělá to kolečkem */
+    transform: translate(-50%, -50%); /* Vycentrování */
+    transition: width 0.4s ease-out, height 0.4s ease-out; /* Rychlost animace */
+    z-index: -1; /* Schová kolečko pod text */
+}
+
+/* Animace po najetí */
+.navbar__links a:hover::before,
+.navbar__links a.active::before {
+    width: 150%; /* Větší než prvek, aby ho celé zakrylo */
+    height: 300%; /* Výška musí být dostatečná pro pokrytí obdélníku */
+}
+
+/* Změna barvy textu při najetí, aby byl čitelný na novém pozadí */
 .navbar__links a:hover,
 .navbar__links a.active {
+    color: var(--nav-bg);
     border-color: var(--nav-fg);
 }
-
-.navbar__links a.active {
-    background: var(--nav-fg);
-    color: var(--nav-bg);
-}
-
 /* Dark toggle */
 .dark-toggle {
     position: relative;
@@ -399,20 +420,31 @@ h3 {
     color: var(--white);
 }
 
-/* Diagonal split background */
 .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(135deg,
-            #0a0a0a 0%,
-            #161616 40%,
-            #1a1a2e 70%,
-            #0d3acc 100%);
-    z-index: 0;
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Přidali jsme více černé na začátek, konec i doprostřed */
+  background: linear-gradient(
+    -45deg, 
+    #0a0a0a 0%, 
+    #0a0a0a 35%,    /* Dlouhá černá plocha */
+    #161620 45%,    /* Velmi tmavá modrošedá */
+    #082689 50%,    /* Hlavní modrý akcent */
+    #161620 65%,    /* Ústup do tmava */
+    #0a0a0a 75%,    /* Opět černá */
+    #0a0a0a 100%
+  );
+  background-size: 300% 300%; /* Trochu jsme zmenšili plochu pro rychlejší průběh */
+  animation: fluidGradient 38s ease-in-out infinite;
+  z-index: 0;
 }
 
+@keyframes fluidGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 /* Noise grain texture */
 .hero::after {
     content: '';
