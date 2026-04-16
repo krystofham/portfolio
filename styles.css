@@ -1230,6 +1230,7 @@ tbody td {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    min-height: 100vh;
 }
 
 @media (max-width: 768px) {

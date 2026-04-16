@@ -1,7 +1,7 @@
 # Dokumentace webového projektu
 
 **Autor:** Kryštof Ham  
-**Třída:** *(doplň třídu)*  
+**Třída:** I1B  
 **Školní rok:** 2025/2026
 
 ---
@@ -17,24 +17,6 @@
 
 **Produkční nasazení:** https://krystofham.github.io/portfolio  
 **Zdrojový kód:** https://github.com/krystofham/portfolio
-
----
-
-## Postup tvorby
-
-| Fáze | Popis činnosti | Od | Do | Počet hodin |
-|------|----------------|----|----|-------------|
-| 1 | Návrh struktury webu, rozdělení do 5 stránek, wireframe | 03/2025 | 03/2025 | 3 h |
-| 2 | Tvorba `styles.css` — CSS proměnné, typografie, dark mode, základní komponenty | 03/2025 | 03/2025 | 6 h |
-| 3 | Tvorba `darkmode.js` — dark mode, navbar, scroll, lightbox, reveal animace | 03/2025 | 04/2025 | 4 h |
-| 4 | Tvorba `index.html` — hero sekce, animace, quick links | 04/2025 | 04/2025 | 3 h |
-| 5 | Tvorba `about.html` — tabulka dovedností, číslované seznamy, sekce soutěží | 04/2025 | 04/2025 | 3 h |
-| 6 | Tvorba `projects.html` — karty projektů, tabulka technologií | 04/2025 | 04/2025 | 2 h |
-| 7 | Tvorba `gallery.html` — fotogalerie, lightbox, filtrování kategorií | 04/2025 | 04/2025 | 3 h |
-| 8 | Tvorba `contact.html` — sociální sítě, tabulka kontaktů, e-mail blok | 04/2025 | 04/2025 | 2 h |
-| 9 | Testování responzivity, optimalizace Lighthouse, finální úpravy | 04/2025 | 04/2025 | 3 h |
-| 10 | Nasazení na GitHub Pages | 04/2025 | 04/2025 | 1 h |
-| | **Celkem** | | | **~30 h** |
 
 ---
 
