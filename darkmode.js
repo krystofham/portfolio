@@ -7,12 +7,11 @@ const modeSwitcher = document.getElementById("mode-switcher");
 const body = document.body;
 
 if (localStorage.getItem("mode") === "dark") {
-    body.classList.add("dark-mode");
-}
+document.documentElement.classList.add("dark-mode");}
 
 if (modeSwitcher) {
         modeSwitcher.addEventListener("click", () => {
-        body.classList.toggle("dark-mode");
+        document.documentElement.classList.toggle("dark-mode");
         localStorage.setItem("mode", body.classList.contains("dark-mode") ? "dark" : "light");
     });
 }
