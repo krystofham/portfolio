@@ -222,6 +222,8 @@ h3 {
     padding: 0 clamp(1rem, 4vw, 3rem);
     max-width: 1400px;
     margin: 0 auto;
+    overflow: hidden; /* ← PŘIDEJ */
+    gap: 0.5rem;      /* ← PŘIDEJ — mezera mezi prvky */
 }
 
 .navbar__logo {
@@ -230,8 +232,11 @@ h3 {
     color: var(--nav-fg);
     letter-spacing: -0.01em;
     white-space: nowrap;
+    min-width: 0;        /* ← PŘIDEJ — umožní flexboxu logo zkrátit */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;      /* ← PŘIDEJ */
 }
-
 .navbar__links {
     display: flex;
     align-items: center;
@@ -293,6 +298,7 @@ h3 {
     margin-left: 0.75rem;
     transition: background var(--transition), color var(--transition);
     flex-shrink: 0;
+    min-width: 40px;     /* ← PŘIDEJ */
 }
 
 .dark-toggle:hover {
@@ -328,7 +334,6 @@ h3 {
     transform: translate(-50%, -50%) rotate(0deg) scale(1);
 }
 
-/* Mobile hamburger */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -336,13 +341,14 @@ h3 {
     gap: 5px;
     width: 40px;
     height: 40px;
+    min-width: 40px;     /* ← PŘIDEJ — zabrání zmačknutí */
     background: none;
     border: 1px solid var(--nav-fg);
     border-radius: var(--radius-sm);
     padding: 8px;
     color: var(--nav-fg);
+    flex-shrink: 0;      /* ← PŘIDEJ */
 }
-
 .hamburger span {
     display: block;
     height: 2px;
@@ -366,19 +372,30 @@ h3 {
 }
 
 /* Mobile nav overlay */
+/* Mobile nav overlay */
 .mobile-nav {
     display: none;
     position: fixed;
-    inset: 60px 0 0;
+    /* inset: top right bottom left */
+    top: 60px; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%; /* Explicitně zajistíme plnou šířku */
     background: var(--nav-bg);
     z-index: 999;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--transition);
+    
+    /* Zabrání přetékání obsahu uvnitř overlaye */
+    overflow-y: auto; 
+    padding: 2rem;
+    box-sizing: border-box; 
 }
 
 .mobile-nav.open {
@@ -389,9 +406,29 @@ h3 {
 
 .mobile-nav a {
     font-family: var(--font-display);
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 8vw, 2.5rem); /* Responzivní písmo, aby nepřeteklo na malých mobilech */
     color: var(--nav-fg);
+    text-align: center;
+    width: 100%;
     transition: color var(--transition);
+}
+
+/* Oprava Media Query na tvých 586px */
+@media (max-width: 768px) {
+    .navbar__links {
+        display: none !important; /* Vynutíme skrytí */
+    }
+
+    .hamburger {
+        display: flex;
+    }
+    
+    /* Ujisti se, že logo na mobilu není příliš široké */
+    .navbar__logo {
+        max-width: 70%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 .mobile-nav a:hover {
@@ -762,59 +799,6 @@ h3 {
     border-color: rgba(255, 255, 255, 0.9);
     transform: translateY(-2px);
 }
-
-
-
-
-
-
-
-/* hero__center zůstane absolutně uprostřed, ale bez boxu */
-.hero__center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    width: max-content;
-    max-width: 90vw;
-    /* žádný background, border, padding */
-}
-
-/* Role — větší, volně plovoucí */
-.hero__card-roles {
-    display: flex;
-    align-items: center;
-    gap: clamp(1rem, 4vw, 2.5rem);
-    justify-content: center;
-}
-
-.hero__role {
-    font-family: var(--font-display);
-    font-size: clamp(2.2rem, 6vw, 4.5rem);
-    color: #ffffff;
-    letter-spacing: -0.03em;
-    font-weight: 400;
-}
-
-.hero__divider {
-    width: 2px;
-    height: clamp(2rem, 5vw, 4rem);
-    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4), transparent);
-    flex-shrink: 0;
-}
-
-.contact__button {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-}
-
-
-
-
-
-
 /* ─── PAGE HEADER (inner pages) ──────────────── */
 .page-header {
     padding: calc(60px + clamp(2rem, 5vw, 4rem)) clamp(1.5rem, 5vw, 4rem) clamp(2rem, 4vw, 3rem);
