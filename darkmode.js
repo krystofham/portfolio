@@ -10,10 +10,10 @@ if (localStorage.getItem("mode") === "dark") {
 document.documentElement.classList.add("dark-mode");}
 
 if (modeSwitcher) {
-        modeSwitcher.addEventListener("click", () => {
-        document.documentElement.classList.toggle("dark-mode");
-        localStorage.setItem("mode", body.classList.contains("dark-mode") ? "dark" : "light");
-    });
+  modeSwitcher.addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark-mode");
+      localStorage.setItem("mode", document.documentElement.classList.contains("dark-mode") ? "dark" : "light"); // ← fix
+  });
 }
 
 /* ────────────────────────────────────────
