@@ -74,44 +74,6 @@ if (navbar) {
     });
   }
 
-  /* ────────────────────────────────────────
-     6. GALLERY LIGHTBOX
-  ──────────────────────────────────────── */
-  const lightbox     = document.querySelector(".lightbox");
-  const lightboxImg  = lightbox?.querySelector("img");
-  const lightboxCap  = lightbox?.querySelector(".lightbox__caption");
-  const lightboxClose = lightbox?.querySelector(".lightbox__close");
-
-  if (lightbox && lightboxImg) {
-    document.querySelectorAll(".gallery-item").forEach((item) => {
-      item.addEventListener("click", () => {
-        const img = item.querySelector("img");
-        if (!img) return;
-        lightboxImg.src = img.dataset.full || img.src;
-        lightboxImg.alt = img.alt;
-        if (lightboxCap) lightboxCap.textContent = img.alt || "";
-        lightbox.classList.add("open");
-        body.style.overflow = "hidden";
-      });
-    });
-
-    const closeLightbox = () => {
-      lightbox.classList.remove("open");
-      body.style.overflow = "";
-      // Reset src after transition
-      setTimeout(() => { lightboxImg.src = ""; }, 300);
-    };
-
-    lightboxClose?.addEventListener("click", closeLightbox);
-
-    lightbox.addEventListener("click", (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
-    });
-  }
 
 
 
