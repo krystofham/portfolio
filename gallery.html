@@ -76,7 +76,8 @@
 
         /* Featured first item — spans 2 cols */
         @media (min-width: 480px) {
-            .gallery-grid .gallery-item:first-child {
+            .gallery-grid .gallery-item:nth-child(1),
+            .gallery-grid .gallery-item:nth-child(2) {
                 grid-column: span 2;
                 aspect-ratio: 2 / 1;
             }
@@ -141,27 +142,17 @@
             <div class="gallery-filters reveal" role="group" aria-label="Filtrovat galerii">
                 <button class="filter-btn active" data-filter="all">Vše</button>
                 <button class="filter-btn" data-filter="souteze">Soutěže</button>
-                <button class="filter-btn" data-filter="skola">Škola</button>
                 <button class="filter-btn" data-filter="volny-cas">Volný čas</button>
             </div>
 
             <!-- GALLERY GRID -->
-            <!-- Replace src values with your actual photo paths. 
-           data-full can point to full-res version, alt is the caption. -->
             <div class="gallery-grid reveal" id="galleryGrid" role="list">
 
                 <div class="gallery-item" data-cat="souteze" role="listitem" tabindex="0"
                     aria-label="Office aréna 2025 — 3. místo">
-                    <img src="photos/soutez-office-arena.jpg" data-full="photos/soutez-office-arena.jpg"
+                    <img src="photos/office-arena25.jpg" data-full="photos/office-arena25.jpg"
                         alt="Office aréna 2025 — 3. místo, celorepublikové kolo" loading="lazy"
                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-placeholder" style="display:none;">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                        <span>Office aréna 2025</span>
-                    </div>
                     <div class="gallery-item__overlay" aria-hidden="true">
                         <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -170,37 +161,10 @@
                     </div>
                 </div>
 
-                <div class="gallery-item" data-cat="souteze" role="listitem" tabindex="0"
-                    aria-label="Pangea — 1. místo">
-                    <img src="photos/soutez-pangea.jpg" data-full="photos/soutez-pangea.jpg"
-                        alt="Pangea — 1. místo, mezirepublikové srovnání" loading="lazy"
+                <div class="gallery-item" data-cat="souteze" role="listitem" tabindex="0" aria-label="Víkendovka matematického korespondenčního semináře">
+                    <img src="photos/prase.jpg" data-full="photos/prase.jpg"
+                        alt="Víkendovka matematického korespondenčního semináře" loading="lazy"
                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-placeholder" style="display:none;">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                        <span>Pangea 2025</span>
-                    </div>
-                    <div class="gallery-item__overlay" aria-hidden="true">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-cat="skola" role="listitem" tabindex="0" aria-label="SPŠEaI Ostrava">
-                    <img src="photos/skola-spseia.jpg" data-full="photos/skola-spseia.jpg"
-                        alt="SPŠEaI Ostrava — schulní projekt" loading="lazy"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-placeholder" style="display:none;">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                        <span>Škola</span>
-                    </div>
                     <div class="gallery-item__overlay" aria-hidden="true">
                         <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -210,16 +174,10 @@
                 </div>
 
                 <div class="gallery-item" data-cat="volny-cas" role="listitem" tabindex="0" aria-label="Florbal">
-                    <img src="photos/florbal.jpg" data-full="photos/florbal.jpg" alt="Florbal — volný čas"
+                    <img src="photos/florbal1.jpg" data-full="photos/florbal1.jpg" alt="Florbal — volný čas"
                         loading="lazy"
                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-placeholder" style="display:none;">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                        <span>Florbal</span>
-                    </div>
+
                     <div class="gallery-item__overlay" aria-hidden="true">
                         <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -227,74 +185,22 @@
                         </svg>
                     </div>
                 </div>
+                <div class="gallery-item" data-cat="volny-cas" role="listitem" tabindex="0" aria-label="Florbal">
+                    <img src="photos/florbal2.jpg" data-full="photos/florbal2.jpg" alt="Florbal — volný čas"
+                        loading="lazy"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
 
+                    <div class="gallery-item__overlay" aria-hidden="true">
+                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                        </svg>
+                    </div>
+                </div>
                 <div class="gallery-item" data-cat="souteze" role="listitem" tabindex="0" aria-label="KSP seminář">
-                    <img src="photos/ksp.jpg" data-full="photos/ksp.jpg" alt="Korespondenční seminář z programování"
+                    <img src="photos/vyfuk2.jpg" data-full="photos/vyfuk2.jpg" alt="Korespondenční seminář z programování"
                         loading="lazy"
                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-placeholder" style="display:none;">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                        <span>KSP</span>
-                    </div>
-                    <div class="gallery-item__overlay" aria-hidden="true">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-cat="volny-cas" role="listitem" tabindex="0" aria-label="Formule 1">
-                    <img src="photos/f1.jpg" data-full="photos/f1.jpg" alt="Formule 1 — zájem o motorsport"
-                        loading="lazy"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-placeholder" style="display:none;">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                        <span>Formule 1</span>
-                    </div>
-                    <div class="gallery-item__overlay" aria-hidden="true">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-cat="skola" role="listitem" tabindex="0" aria-label="Školní projekt">
-                    <img src="photos/skola-projekt.jpg" data-full="photos/skola-projekt.jpg"
-                        alt="Školní programovací projekt" loading="lazy"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-placeholder" style="display:none;">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                        <span>Projekt</span>
-                    </div>
-                    <div class="gallery-item__overlay" aria-hidden="true">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="gallery-item" data-cat="volny-cas" role="listitem" tabindex="0" aria-label="Volný čas">
-                    <img src="photos/volny-cas.jpg" data-full="photos/volny-cas.jpg" alt="Volný čas" loading="lazy"
-                        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                    <div class="gallery-placeholder" style="display:none;">
-                        <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-                        </svg>
-                        <span>Volný čas</span>
-                    </div>
                     <div class="gallery-item__overlay" aria-hidden="true">
                         <svg width="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -304,10 +210,6 @@
                 </div>
 
             </div><!-- /gallery-grid -->
-
-            <p class="text-muted mt-4 reveal" style="font-size:0.82rem;">
-                Fotky přidám brzy — zálohy stále organizuji. Složku <code>photos/</code> přidej do kořene projektu.
-            </p>
 
         </div><!-- /container -->
     </main>
