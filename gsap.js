@@ -1,5 +1,7 @@
 gsap.registerPlugin(ScrollTrigger, CustomEase);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
+gsap.set("body", { overflowX: "hidden" });
 CustomEase.create("expo.out",  "M0,0 C0.06,0.975 0.15,1 1,1");
 CustomEase.create("back.pop",  "M0,0 C0.05,0 0.157,0.771 0.25,0.85 0.354,0.935 0.44,1.046 0.534,1.059 0.661,1.074 0.758,1.003 1,1");
 
@@ -29,6 +31,7 @@ if (document.querySelector(".hero")) {
     gsap.from(".hero__card-roles", {
         opacity: 0, scale: 0.85, duration: 1.3,
         ease: "back.pop", delay: 0.35,
+    transformOrigin: "center center",
     });
 
     gsap.from(".hero__role", {
@@ -50,6 +53,7 @@ if (document.querySelector(".hero")) {
             scrub: 1,
         },
         opacity: 0, scale: 0.9,
+            transformOrigin: "center center", 
     });
 
     /* — Kontakt tlačítko — */
