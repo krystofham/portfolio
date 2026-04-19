@@ -8,9 +8,247 @@
     <meta name="description" content="Kryštof Ham — Kontakt: LinkedIn, GitHub, Instagram, email.">
     <meta name="author" content="Kryštof Ham">
     <title>Kontakt — Kryštof Ham</title>
-        <script src="darkmode.js" ></script>
-
+    <script src="darkmode.js"></script>
     <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ── Contact Form ─────────────────────────────────────── */
+        .contact-form-section {
+            margin-top: 3rem;
+        }
+
+        .contact-form-section h2 {
+            font-size: 1rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-card {
+            background: var(--surface, #f9f9f9);
+            border: 1px solid var(--border, #e5e5e5);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 560px;
+        }
+
+        .dark-mode .form-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            font-family: var(--font-body, inherit);
+            font-size: 0.95rem;
+            color: var(--text, #111);
+            background: transparent;
+            border: 1px solid var(--border, #ddd);
+            border-radius: 8px;
+            padding: 0.7rem 0.9rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            resize: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .dark-mode .form-group input,
+        .dark-mode .form-group textarea {
+            color: var(--text, #f0f0f0);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--muted);
+            opacity: 0.6;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent, #444);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .dark-mode .form-group input:focus,
+        .dark-mode .form-group textarea:focus {
+            border-color: rgba(255, 255, 255, 0.45);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.07);
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+        }
+
+        /* Submit button — inherits site's button styles if present, fallback below */
+        .form-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-family: var(--font-body, inherit);
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--bg, #fff);
+            background: var(--text, #111);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-mode .form-submit {
+            color: var(--bg, #111);
+            background: var(--text, #f0f0f0);
+        }
+
+        .form-submit:hover {
+            opacity: 0.85;
+        }
+
+        .form-submit:active {
+            transform: scale(0.97);
+        }
+
+        .form-submit:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Spinner inside button */
+        .btn-spinner {
+            display: none;
+            width: 15px;
+            height: 15px;
+            border: 2px solid currentColor;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.65s linear infinite;
+            flex-shrink: 0;
+        }
+
+        .form-submit.loading .btn-spinner { display: block; }
+        .form-submit.loading .btn-label   { opacity: 0.7; }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Status messages */
+        .form-status {
+            margin-top: 1rem;
+            font-size: 0.88rem;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            display: none;
+            animation: fadeUp 0.3s ease both;
+        }
+
+        .form-status.success {
+            display: block;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #16a34a;
+        }
+
+        .dark-mode .form-status.success {
+            background: rgba(34, 197, 94, 0.08);
+            color: #4ade80;
+        }
+
+        .form-status.error {
+            display: block;
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            color: #dc2626;
+        }
+
+        .dark-mode .form-status.error {
+            background: rgba(239, 68, 68, 0.08);
+            color: #f87171;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Success state — hide form, show big check */
+        .form-success-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2.5rem 1rem;
+            gap: 1rem;
+            animation: fadeUp 0.4s ease both;
+        }
+
+        .form-success-screen.visible {
+            display: flex;
+        }
+
+        .form-success-screen svg {
+            color: #22c55e;
+        }
+
+        .form-success-screen p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            max-width: 28ch;
+            line-height: 1.6;
+        }
+
+        .checkmark-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkmark-path {
+            stroke-dasharray: 30;
+            stroke-dashoffset: 30;
+            animation: drawCheck 0.5s 0.1s ease forwards;
+        }
+
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .form-card { padding: 1.5rem 1.2rem; }
+        }
+    </style>
 </head>
 
 <body>
@@ -110,11 +348,62 @@
                             krystof.ham@proton.me
                         </a>
                     </div>
-
-    
                 </section>
 
             </div><!-- /contact-grid -->
+
+            <!-- ── CONTACT FORM ───────────────────────────────────────── -->
+            <section class="contact-form-section reveal" aria-labelledby="form-heading">
+                <h2 id="form-heading">Zpráva</h2>
+
+                <div class="form-card">
+
+                    <!-- Success screen (hidden until sent) -->
+                    <div class="form-success-screen" id="successScreen" role="status" aria-live="polite">
+                        <div class="checkmark-circle">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline class="checkmark-path" points="4 12 9 17 20 7" />
+                            </svg>
+                        </div>
+                        <strong style="font-size:1.05rem;">Odesláno!</strong>
+                        <p>Díky za zprávu — ozvu se co nejdřív.</p>
+                    </div>
+
+                    <!-- The form itself -->
+                    <form id="contactForm" novalidate>
+
+                        <div class="form-group">
+                            <label for="name">Jméno</label>
+                            <input type="text" id="name" name="name"
+                                placeholder="Jan Novák" autocomplete="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email"
+                                placeholder="jan@example.com" autocomplete="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Zpráva</label>
+                            <textarea id="message" name="message"required></textarea>
+                        </div>
+
+                        <!-- Honeypot — spam protection -->
+                        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+                        <button type="submit" class="form-submit" id="submitBtn">
+                            <span class="btn-spinner" aria-hidden="true"></span>
+                            <span class="btn-label">Odeslat</span>
+                        </button>
+
+                        <div class="form-status" id="formStatus" role="alert" aria-live="polite"></div>
+
+                    </form>
+                </div>
+            </section>
+            <!-- /CONTACT FORM -->
 
         </div><!-- /container -->
     </main>
@@ -157,6 +446,73 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
         </svg>
     </button>
-</body>
 
+    <!-- ── FORM SCRIPT ──────────────────────────────────────────────── -->
+    <script>
+        const FORMSPREE_URL = "https://formspree.io/f/mrerkord";
+
+        const form       = document.getElementById("contactForm");
+        const submitBtn  = document.getElementById("submitBtn");
+        const status     = document.getElementById("formStatus");
+        const successScr = document.getElementById("successScreen");
+
+        function setStatus(type, msg) {
+            status.className = "form-status " + type;
+            status.textContent = msg;
+        }
+
+        function clearStatus() {
+            status.className = "form-status";
+            status.textContent = "";
+        }
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            clearStatus();
+
+            // Basic client-side validation
+            const name    = form.name.value.trim();
+            const email   = form.email.value.trim();
+            const message = form.message.value.trim();
+
+            if (!name || !email || !message) {
+                setStatus("error", "Vyplň prosím všechna pole.");
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                setStatus("error", "Zadej platnou e-mailovou adresu.");
+                return;
+            }
+
+            // Loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add("loading");
+
+            try {
+                const res = await fetch(FORMSPREE_URL, {
+                    method:  "POST",
+                    headers: { "Accept": "application/json" },
+                    body:    new FormData(form),
+                });
+
+                if (res.ok) {
+                    // Swap to success screen
+                    form.style.display = "none";
+                    successScr.classList.add("visible");
+                } else {
+                    const data = await res.json().catch(() => ({}));
+                    const msg  = data?.errors?.map(e => e.message).join(", ")
+                                 || "Něco se pokazilo. Zkus to znovu.";
+                    setStatus("error", msg);
+                }
+            } catch {
+                setStatus("error", "Chyba připojení. Zkontroluj internet a zkus to znovu.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove("loading");
+            }
+        });
+    </script>
+
+</body>
 </html>
