@@ -64,13 +64,11 @@ const loads  = images.map(img => new Promise(res => {
 }));
 
 Promise.all(loads).then(() => {
-    console.log("Všechny načteny, spouštím animace");
     items.forEach((item, i) => {
-        console.log(i, item.getBoundingClientRect().top, window.innerHeight);
         const variant = ENTRANCE_VARIANTS[i % ENTRANCE_VARIANTS.length];
         const rect = item.getBoundingClientRect();
 
-        if (rect.top < window.innerHeight) {
+        if (rect.top < window.innerHeight + 50) {
             variant(item);
         } else {
             ScrollTrigger.create({
@@ -81,6 +79,8 @@ Promise.all(loads).then(() => {
             });
         }
     });
+
+    setTimeout(() => ScrollTrigger.refresh(), 100);
 });
 
 /* ── Hover: jemný 3D tilt ─────────────────────────────── */
