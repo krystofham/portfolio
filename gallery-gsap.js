@@ -64,15 +64,15 @@ const loads  = images.map(img => new Promise(res => {
 }));
 
 Promise.all(loads).then(() => {
+    console.log("Všechny načteny, spouštím animace");
     items.forEach((item, i) => {
+        console.log(i, item.getBoundingClientRect().top, window.innerHeight);
         const variant = ENTRANCE_VARIANTS[i % ENTRANCE_VARIANTS.length];
         const rect = item.getBoundingClientRect();
 
-        // Pokud je element už viditelný — spusť animaci přímo
         if (rect.top < window.innerHeight) {
             variant(item);
         } else {
-            // Jinak čekej na scroll
             ScrollTrigger.create({
                 trigger: item,
                 start: "top 100%",
