@@ -52,21 +52,30 @@ const ENTRANCE_VARIANTS = [
 /* ── Přiřadíme varianty fotkám (cyklicky) ─────────────── */
 const items = gsap.utils.toArray(".gallery-item");
 
-items.forEach((item, i) => {
-    const variant = ENTRANCE_VARIANTS[i % ENTRANCE_VARIANTS.length];
+// Skryj všechny hned
+items.forEach(item => gsap.set(item, { opacity: 0 }));
 
-    /* Skryj před spuštěním */
-    gsap.set(item, { opacity: 0 });
+// Počkej až se načtou všechny obrázky
+const images = [...document.querySelectorAll(".gallery-item img")];
+const loads  = images.map(img => new Promise(res => {
+    if (img.complete && img.naturalWidth > 0) return res();
+    img.addEventListener("load",  res);
+    img.addEventListener("error", res); // i chyba = pokračuj
+}));
 
-    ScrollTrigger.create({
-        trigger: item,
-        start: "top 100%",
-        once: true,
-        onEnter: () => variant(item),
-        onRefresh: (self) => { // spustí se i když je element už viditelný
-            if (self.isInViewport) variant(item);
-        }
+Promise.all(loads).then(() => {
+    items.forEach((item, i) => {
+        const variant = ENTRANCE_VARIANTS[i % ENTRANCE_VARIANTS.length];
+
+        ScrollTrigger.create({
+            trigger: item,
+            start: "top 100%",
+            once: true,
+            onEnter: () => variant(item),
+        });
     });
+
+    ScrollTrigger.refresh();
 });
 
 /* ── Hover: jemný 3D tilt ─────────────────────────────── */
