@@ -66,16 +66,21 @@ const loads  = images.map(img => new Promise(res => {
 Promise.all(loads).then(() => {
     items.forEach((item, i) => {
         const variant = ENTRANCE_VARIANTS[i % ENTRANCE_VARIANTS.length];
+        const rect = item.getBoundingClientRect();
 
-        ScrollTrigger.create({
-            trigger: item,
-            start: "top 100%",
-            once: true,
-            onEnter: () => variant(item),
-        });
+        // Pokud je element už viditelný — spusť animaci přímo
+        if (rect.top < window.innerHeight) {
+            variant(item);
+        } else {
+            // Jinak čekej na scroll
+            ScrollTrigger.create({
+                trigger: item,
+                start: "top 100%",
+                once: true,
+                onEnter: () => variant(item),
+            });
+        }
     });
-
-    ScrollTrigger.refresh();
 });
 
 /* ── Hover: jemný 3D tilt ─────────────────────────────── */
