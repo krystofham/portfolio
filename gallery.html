@@ -263,51 +263,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 <script src="gallery-gsap.js"></script>
-    <script>
-        // Gallery filter logic
-        document.addEventListener("DOMContentLoaded", () => {
-            const filterBtns = document.querySelectorAll(".filter-btn");
-            const items = document.querySelectorAll(".gallery-item[data-cat]");
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const filter = btn.dataset.filter;
-
-                    filterBtns.forEach(b => b.classList.remove("active"));
-                    btn.classList.add("active");
-
-                    items.forEach(item => {
-                        if (filter === "all" || item.dataset.cat === filter) {
-                            item.classList.remove("hidden");
-                        } else {
-                            item.classList.add("hidden");
-                        }
-                    });
-                });
-            });
-
-            // Keyboard support for gallery items (Enter/Space opens lightbox)
-            items.forEach(item => {
-                item.addEventListener("keydown", (e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        item.click();
-                    }
-                });
-            });
-
-            // Show placeholders for missing images on load
-            document.querySelectorAll(".gallery-item img").forEach(img => {
-                if (!img.complete || img.naturalWidth === 0) {
-                    img.style.display = "none";
-                    const ph = img.nextElementSibling;
-                    if (ph?.classList.contains("gallery-placeholder")) {
-                        ph.style.display = "flex";
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>

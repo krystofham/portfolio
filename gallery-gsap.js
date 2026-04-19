@@ -2,7 +2,7 @@
    GALLERY — GSAP animations
    Requires: gsap, ScrollTrigger, CustomEase
    ═══════════════════════════════════════════════════════ */
-
+document.addEventListener("DOMContentLoaded", () => {
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 CustomEase.create("expo.out", "M0,0 C0.06,0.975 0.15,1 1,1");
@@ -228,4 +228,5 @@ if (wordInner) {
         { y: "110%" },
         { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
     );
+}
 }
