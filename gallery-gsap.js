@@ -60,9 +60,12 @@ items.forEach((item, i) => {
 
     ScrollTrigger.create({
         trigger: item,
-        start: "top 90%",
+        start: "top 100%",
         once: true,
         onEnter: () => variant(item),
+        onRefresh: (self) => { // spustí se i když je element už viditelný
+            if (self.isInViewport) variant(item);
+        }
     });
 });
 
@@ -229,4 +232,10 @@ if (wordInner) {
         { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
     );
 }
+/* ── DEBUG — smaž po opravě ── */
+document.querySelectorAll(".gallery-item img").forEach(img => {
+    console.log(img.src, "complete:", img.complete, "naturalWidth:", img.naturalWidth);
+    img.addEventListener("error", () => console.error("CHYBA načítání:", img.src));
+    img.addEventListener("load",  () => console.log("OK:", img.src));
+});
 });
