@@ -169,50 +169,52 @@ function openLightbox(src, alt, originEl) {
     lbImg.src = src;
     lbImg.alt = alt;
     if (lbCaption) lbCaption.textContent = alt;
+
+    // Nejdřív zobraz element, pak animuj opacity přes GSAP
     lightbox.classList.add("open");
     document.body.style.overflow = "hidden";
 
-    const rect   = originEl.getBoundingClientRect();
-    const fromX  = (rect.left + rect.width  / 2 - window.innerWidth  / 2) * 0.35;
-    const fromY  = (rect.top  + rect.height / 2 - window.innerHeight / 2) * 0.35;
-
+    // Animuj přes opacity (ne backgroundColor) — CSS má display:flex přes .open
     gsap.fromTo(lightbox,
-        { backgroundColor: "rgba(0,0,0,0)" },
-        { backgroundColor: "rgba(0,0,0,0.88)", duration: 0.5, ease: "expo.out" }
+        { opacity: 0 },
+        { opacity: 1, duration: 0.4, ease: "expo.out" }
     );
+    // Img — nepoužívej scale/x/y, nech CSS transition pracovat
     gsap.fromTo(lbImg,
-        { scale: 0.5, x: fromX, y: fromY, opacity: 0, rotation: -3 },
-        { scale: 1,   x: 0,     y: 0,     opacity: 1, rotation: 0,
-          duration: 0.7, ease: "back.pop" }
+        { opacity: 0, scale: 0.88 },
+        { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.4)" }
     );
     if (lbClose) {
         gsap.fromTo(lbClose,
-            { opacity: 0, rotate: -90, scale: 0.7 },
-            { opacity: 1, rotate: 0,   scale: 1, duration: 0.5, delay: 0.3, ease: "back.pop" }
+            { opacity: 0, scale: 0.7 },
+            { opacity: 1, scale: 1, duration: 0.35, delay: 0.15, ease: "back.out(1.4)" }
         );
     }
     if (lbCaption) {
         gsap.fromTo(lbCaption,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0,  duration: 0.5, delay: 0.35, ease: "expo.out" }
+            { opacity: 0, y: 12 },
+            { opacity: 1, y: 0, duration: 0.35, delay: 0.2, ease: "expo.out" }
         );
     }
 }
 
 function closeLightbox() {
     if (!lbOpen || !lightbox) return;
-    const tl = gsap.timeline({ onComplete: () => {
-        lightbox.classList.remove("open");
-        lbImg.src = "";
-        lbOpen = false;
-        document.body.style.overflow = "";
-    }});
-    tl.to([lbImg, lbCaption, lbClose].filter(Boolean),
-        { opacity: 0, scale: 0.88, y: 24, stagger: 0.04, duration: 0.3, ease: "power3.in" });
-    tl.to(lightbox,
-        { backgroundColor: "rgba(0,0,0,0)", duration: 0.3, ease: "power2.in" }, "<0.1");
-}
 
+    gsap.to(lightbox, {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.in",
+        onComplete: () => {
+            lightbox.classList.remove("open");
+            lbImg.src = "";
+            lbOpen = false;
+            document.body.style.overflow = "";
+            // Reset GSAP inline styles aby CSS zase fungoval příště
+            gsap.set([lightbox, lbImg, lbClose, lbCaption].filter(Boolean), { clearProps: "all" });
+        }
+    });
+}
 items.forEach(item => {
     item.addEventListener("click", () => {
         const img = item.querySelector("img");
