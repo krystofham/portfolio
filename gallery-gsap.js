@@ -58,9 +58,9 @@ items.forEach(item => gsap.set(item, { opacity: 0 }));
 // Počkej až se načtou všechny obrázky
 const images = [...document.querySelectorAll(".gallery-item img")];
 const loads  = images.map(img => new Promise(res => {
-    if (img.complete && img.naturalWidth > 0) return res();
-    img.addEventListener("load",  res);
-    img.addEventListener("error", res); // i chyba = pokračuj
+    if (img.complete) return res();
+    img.addEventListener("load",  res, { once: true });
+    img.addEventListener("error", res, { once: true });
 }));
 
 Promise.all(loads).then(() => {
