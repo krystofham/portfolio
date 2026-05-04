@@ -139,9 +139,8 @@ filterBtns.forEach(btn => {
                 duration: 0.35,
                 ease: "power3.in",
                 onComplete: () => {
-                    el.classList.add("hidden");
+                    el.style.display = "none";          // ← místo classList.add("hidden")
                     gsap.set(el, { clearProps: "all" });
-                    gsap.set(el, { opacity: 0 });
                 }
             });
         });
@@ -149,6 +148,7 @@ filterBtns.forEach(btn => {
         /* Příchod — každý svoji variantou */
         toShow.forEach((el, i) => {
             el.classList.remove("hidden");
+            el.style.display = "";
             const variant = ENTRANCE_VARIANTS[i % ENTRANCE_VARIANTS.length];
             gsap.delayedCall(0.2 + i * 0.08, () => variant(el));
         });
