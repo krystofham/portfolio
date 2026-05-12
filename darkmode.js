@@ -12,7 +12,7 @@ document.documentElement.classList.add("dark-mode");}
 if (modeSwitcher) {
   modeSwitcher.addEventListener("click", () => {
       document.documentElement.classList.toggle("dark-mode");
-      localStorage.setItem("mode", document.documentElement.classList.contains("dark-mode") ? "dark" : "light"); // ← fix
+      localStorage.setItem("mode", document.documentElement.classList.contains("dark-mode") ? "dark" : "light");
   });
 }
 
@@ -27,7 +27,6 @@ if (navbar) {
 };
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    // Mark active link
     const currentPage = location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".navbar__links a, .mobile-nav a").forEach(link => {
       const href = link.getAttribute("href");
@@ -78,7 +77,7 @@ if (navbar) {
 
 
   /* ────────────────────────────────────────
-     8. HERO TYPE EFFECT (index only)
+     5. HERO TYPE EFFECT (index only)
   ──────────────────────────────────────── */
   const heroName = document.querySelector(".hero__name");
 
@@ -91,7 +90,7 @@ if (navbar) {
   }
 
   /* ────────────────────────────────────────
-     9. TABLE — sort on header click (simple)
+     6. TABLE — sort on header click (simple)
   ──────────────────────────────────────── */
   document.querySelectorAll("table.sortable").forEach(table => {
     const headers = table.querySelectorAll("thead th");
@@ -120,7 +119,7 @@ if (navbar) {
   });
 
   /* ────────────────────────────────────────
-     10. SMOOTH LINK TRANSITIONS
+     7. SMOOTH LINK TRANSITIONS
   ──────────────────────────────────────── */
   if ("startViewTransition" in document) {
     document.querySelectorAll("a[href]").forEach(link => {
