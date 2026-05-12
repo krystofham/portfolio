@@ -156,80 +156,6 @@ filterBtns.forEach(btn => {
     });
 });
 
-/* ── Lightbox ─────────────────────────────────────────── */
-const lightbox  = document.getElementById("lightbox");
-const lbImg     = lightbox?.querySelector("img");
-const lbCaption = lightbox?.querySelector(".lightbox__caption");
-const lbClose   = lightbox?.querySelector(".lightbox__close");
-let lbOpen = false;
-
-function openLightbox(src, alt, originEl) {
-    if (lbOpen || !lightbox) return;
-    lbOpen = true;
-
-    lbImg.src = src;
-    lbImg.alt = alt;
-    if (lbCaption) lbCaption.textContent = alt;
-
-    // Nejdřív zobraz element, pak animuj opacity přes GSAP
-    lightbox.classList.add("open");
-    document.body.style.overflow = "hidden";
-
-    // Animuj přes opacity (ne backgroundColor) — CSS má display:flex přes .open
-    gsap.fromTo(lightbox,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.4, ease: "expo.out" }
-    );
-    // Img — nepoužívej scale/x/y, nech CSS transition pracovat
-    gsap.fromTo(lbImg,
-        { opacity: 0, scale: 0.88 },
-        { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.4)" }
-    );
-    if (lbClose) {
-        gsap.fromTo(lbClose,
-            { opacity: 0, scale: 0.7 },
-            { opacity: 1, scale: 1, duration: 0.35, delay: 0.15, ease: "back.out(1.4)" }
-        );
-    }
-    if (lbCaption) {
-        gsap.fromTo(lbCaption,
-            { opacity: 0, y: 12 },
-            { opacity: 1, y: 0, duration: 0.35, delay: 0.2, ease: "expo.out" }
-        );
-    }
-}
-
-function closeLightbox() {
-    if (!lbOpen || !lightbox) return;
-
-    gsap.to(lightbox, {
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.in",
-        onComplete: () => {
-            lightbox.classList.remove("open");
-            lbImg.src = "";
-            lbOpen = false;
-            document.body.style.overflow = "";
-            // Reset GSAP inline styles aby CSS zase fungoval příště
-            gsap.set([lightbox, lbImg, lbClose, lbCaption].filter(Boolean), { clearProps: "all" });
-        }
-    });
-}
-items.forEach(item => {
-    item.addEventListener("click", () => {
-        const img = item.querySelector("img");
-        if (!img) return;
-        openLightbox(img.dataset.full || img.src, img.alt, item);
-    });
-    item.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); item.click(); }
-    });
-});
-
-lbClose?.addEventListener("click", closeLightbox);
-lightbox?.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
 
 /* ── Scroll progress bar (pokud existuje) ─────────────── */
 const progressBar = document.getElementById("scrollProgress");
@@ -243,11 +169,53 @@ if (progressBar) {
 
 /* ── Page header word reveal ──────────────────────────── */
 const wordInner = document.querySelector(".page-header h1 .word-inner");
-        if (wordInner) {
-            gsap.fromTo(wordInner,
-                { y: "110%" },
-                { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
-            );
-        }
-    }
-}); 
+if (wordInner) {
+    gsap.fromTo(wordInner,
+        { y: "110%" },
+        { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
+    );
+}
+
+} // ← zavírá if (!pointer coarse)
+
+/* ── Lightbox — funguje i na mobilu ──────────────────── */
+const lightbox  = document.getElementById("lightbox");
+const lbImg     = lightbox?.querySelector("img");
+const lbCaption = lightbox?.querySelector(".lightbox__caption");
+const lbClose   = lightbox?.querySelector(".lightbox__close");
+let lbOpen = false;
+
+function openLightbox(src, alt) {
+    if (lbOpen || !lightbox) return;
+    lbOpen = true;
+    lbImg.src = src;
+    lbImg.alt = alt;
+    if (lbCaption) lbCaption.textContent = alt;
+    lightbox.classList.add("open");
+    document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+    if (!lbOpen || !lightbox) return;
+    lightbox.classList.remove("open");
+    lbImg.src = "";
+    lbOpen = false;
+    document.body.style.overflow = "";
+}
+
+document.querySelectorAll(".gallery-item").forEach(item => {
+    item.addEventListener("click", () => {
+        const img = item.querySelector("img");
+        if (!img) return;
+        openLightbox(img.dataset.full || img.src, img.alt);
+    });
+    item.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); item.click(); }
+    });
+});
+
+lbClose?.addEventListener("click", closeLightbox);
+lightbox?.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
+
+}); // ← zavírá DOMContentLoaded
