@@ -243,10 +243,11 @@ if (progressBar) {
 
 /* ── Page header word reveal ──────────────────────────── */
 const wordInner = document.querySelector(".page-header h1 .word-inner");
-if (wordInner) {
-    gsap.fromTo(wordInner,
-        { y: "110%" },
-        { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
-    );
-}
-});
+        if (wordInner) {
+            gsap.fromTo(wordInner,
+                { y: "110%" },
+                { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
+            );
+        }
+    }
+}); 
