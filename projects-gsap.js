@@ -1,5 +1,5 @@
 gsap.registerPlugin(ScrollTrigger, CustomEase);
-
+if (!window.matchMedia("(pointer: coarse)").matches) {
 CustomEase.create("expo.out", "M0,0 C0.06,0.975 0.15,1 1,1");
 CustomEase.create("back.pop", "M0,0 C0.05,0 0.157,0.771 0.25,0.85 0.354,0.935 0.44,1.046 0.534,1.059 0.661,1.074 0.758,1.003 1,1");
 
@@ -29,7 +29,7 @@ cards.forEach((card, i) => {
             );
         }
     });
-
+    
     /* Hover 3D tilt */
     card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
@@ -80,4 +80,5 @@ if (progressBar) {
         width: "100%", ease: "none",
         scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 0.3 },
     });
+}
 }
