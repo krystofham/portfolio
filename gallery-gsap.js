@@ -4,6 +4,7 @@
    ═══════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
 gsap.registerPlugin(ScrollTrigger, CustomEase);
+if (!window.matchMedia("(pointer: coarse)").matches) {
 
 CustomEase.create("expo.out", "M0,0 C0.06,0.975 0.15,1 1,1");
 CustomEase.create("back.pop", "M0,0 C0.05,0 0.157,0.771 0.25,0.85 0.354,0.935 0.44,1.046 0.534,1.059 0.661,1.074 0.758,1.003 1,1");
@@ -248,10 +249,5 @@ if (wordInner) {
         { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
     );
 }
-/* ── DEBUG — smaž po opravě ── */
-document.querySelectorAll(".gallery-item img").forEach(img => {
-    console.log(img.src, "complete:", img.complete, "naturalWidth:", img.naturalWidth);
-    img.addEventListener("error", () => console.error("CHYBA načítání:", img.src));
-    img.addEventListener("load",  () => console.log("OK:", img.src));
 });
-});
+}
