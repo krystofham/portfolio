@@ -249,4 +249,4 @@ if (wordInner) {
         { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
     );
 }
-}});
+});
