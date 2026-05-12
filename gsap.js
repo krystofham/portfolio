@@ -1,4 +1,5 @@
 gsap.registerPlugin(ScrollTrigger, CustomEase);
+if (!window.matchMedia("(pointer: coarse)").matches) {
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 gsap.set("body", { overflowX: "hidden" });
@@ -223,4 +224,5 @@ if (progressBar) {
             scrub: 0.3,
         },
     });
+}
 }
