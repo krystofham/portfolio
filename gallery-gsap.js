@@ -2,84 +2,75 @@
    GALLERY — GSAP animations
    Requires: gsap, ScrollTrigger, CustomEase
    ═══════════════════════════════════════════════════════ */
-document.addEventListener("DOMContentLoaded", () => {
+
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("expo.out", "M0,0 C0.06,0.975 0.15,1 1,1");
 CustomEase.create("back.pop", "M0,0 C0.05,0 0.157,0.771 0.25,0.85 0.354,0.935 0.44,1.046 0.534,1.059 0.661,1.074 0.758,1.003 1,1");
 
 /* ── Každé n-té foto dostane jinou vstupní animaci ── */
 const ENTRANCE_VARIANTS = [
-    /* 0 — spadne shora + lehce se otočí */
     (el) => gsap.fromTo(el,
         { y: -80, rotation: -6, opacity: 0, scale: 0.9 },
         { y: 0, rotation: 0, opacity: 1, scale: 1, duration: 0.9, ease: "back.pop" }
     ),
-
-    /* 1 — přijede zleva s blur efektem */
     (el) => gsap.fromTo(el,
         { x: -100, opacity: 0, filter: "blur(12px)" },
         { x: 0, opacity: 1, filter: "blur(0px)", duration: 0.85, ease: "expo.out",
           onComplete: () => el.style.filter = "" }
     ),
-
-    /* 2 — vyroste ze středu jako karta */
     (el) => gsap.fromTo(el,
         { scale: 0.4, opacity: 0, rotation: 8, transformOrigin: "center center" },
         { scale: 1, opacity: 1, rotation: 0, duration: 1.0, ease: "back.pop" }
     ),
-
-    /* 3 — přijede zprava s odrazem */
     (el) => gsap.fromTo(el,
         { x: 120, opacity: 0, skewX: -8 },
         { x: 0, opacity: 1, skewX: 0, duration: 0.8, ease: "expo.out" }
     ),
-
-    /* 4 — odhalení přes clipPath (závěs) */
     (el) => gsap.fromTo(el,
         { clipPath: "inset(0 100% 0 0)", opacity: 1 },
         { clipPath: "inset(0 0% 0 0)", duration: 0.9, ease: "expo.out",
           onComplete: () => el.style.clipPath = "" }
     ),
-
-    /* 5 — šikmo zdola + rotation */
     (el) => gsap.fromTo(el,
         { y: 100, x: -40, rotation: 5, opacity: 0 },
         { y: 0, x: 0, rotation: 0, opacity: 1, duration: 0.95, ease: "back.pop" }
     ),
 ];
 
-/* ── Přiřadíme varianty fotkám (cyklicky) ─────────────── */
+/* ── Přiřadíme varianty fotkám ─────────────────────────── */
 const items = gsap.utils.toArray(".gallery-item");
 
-// Skryj všechny hned
-items.forEach(item => gsap.set(item, { opacity: 0 }));
+// Skryj synchronně
+gsap.set(items, { opacity: 0 });
 
-// Počkej až se načtou všechny obrázky
-const images = [...document.querySelectorAll(".gallery-item img")];
-const loads  = images.map(img => new Promise(res => {
-    if (img.complete) return res();
-    img.addEventListener("load",  res, { once: true });
-    img.addEventListener("error", res, { once: true });
-}));
+// Počkej jeden frame aby browser vykreslil opacity:0, pak animuj
+requestAnimationFrame(() => {
+    const images = [...document.querySelectorAll(".gallery-item img")];
+    const loads = images.map(img => new Promise(res => {
+        if (img.complete) return res();
+        img.addEventListener("load",  res, { once: true });
+        img.addEventListener("error", res, { once: true });
+    }));
 
-Promise.all(loads).then(() => {
-    items.forEach((item, i) => {
-        const variant = ENTRANCE_VARIANTS[i % ENTRANCE_VARIANTS.length];
-        const rect = item.getBoundingClientRect();
+    Promise.all(loads).then(() => {
+        items.forEach((item, i) => {
+            const variant = ENTRANCE_VARIANTS[i % ENTRANCE_VARIANTS.length];
+            const rect = item.getBoundingClientRect();
 
-        if (rect.top < window.innerHeight + 50) {
-            variant(item);
-        } else {
-            ScrollTrigger.create({
-                trigger: item,
-                start: "top 100%",
-                once: true,
-                onEnter: () => variant(item),
-            });
-        }
+            if (rect.top < window.innerHeight + 50) {
+                variant(item);
+            } else {
+                ScrollTrigger.create({
+                    trigger: item,
+                    start: "top 100%",
+                    once: true,
+                    onEnter: () => variant(item),
+                });
+            }
+        });
+
+        setTimeout(() => ScrollTrigger.refresh(), 100);
     });
-
-    setTimeout(() => ScrollTrigger.refresh(), 100);
 });
 
 /* ── Hover: jemný 3D tilt ─────────────────────────────── */
@@ -113,7 +104,7 @@ items.forEach(item => {
     });
 });
 
-/* ── Filter: stagger out/in s různými exit animacemi ──── */
+/* ── Filter ───────────────────────────────────────────── */
 const filterBtns = document.querySelectorAll(".filter-btn");
 
 filterBtns.forEach(btn => {
@@ -126,7 +117,6 @@ filterBtns.forEach(btn => {
         const toHide = items.filter(el => !(filter === "all" || el.dataset.cat === filter));
         const toShow = items.filter(el =>   filter === "all" || el.dataset.cat === filter);
 
-        /* Odchod — každý jinak */
         toHide.forEach((el, i) => {
             const exits = [
                 { y: -50, rotation: -10, opacity: 0, scale: 0.8 },
@@ -138,13 +128,12 @@ filterBtns.forEach(btn => {
                 duration: 0.35,
                 ease: "power3.in",
                 onComplete: () => {
-                    el.style.display = "none";          // ← místo classList.add("hidden")
+                    el.style.display = "none";
                     gsap.set(el, { clearProps: "all" });
                 }
             });
         });
 
-        /* Příchod — každý svoji variantou */
         toShow.forEach((el, i) => {
             el.classList.remove("hidden");
             el.style.display = "";
@@ -154,8 +143,7 @@ filterBtns.forEach(btn => {
     });
 });
 
-
-/* ── Scroll progress bar (pokud existuje) ─────────────── */
+/* ── Scroll progress bar ──────────────────────────────── */
 const progressBar = document.getElementById("scrollProgress");
 if (progressBar) {
     gsap.to(progressBar, {
@@ -173,4 +161,3 @@ if (wordInner) {
         { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
     );
 }
-}); 
