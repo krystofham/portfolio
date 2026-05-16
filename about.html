@@ -366,20 +366,23 @@ Stavím věci v HTML, CSS a Pythonu. Mám základní znalosti SQL, C a JavaScrip
     </button>
     <script>
     if (!window.matchMedia("(pointer: coarse)").matches) {
-        const scripts = [
+        const srcs = [
             "https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js",
             "https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js",
             "https://cdn.jsdelivr.net/npm/gsap@3/dist/CustomEase.min.js",
             "gsap.js"
         ];
 
-        scripts.forEach(src => {
+        function loadNext(i) {
+            if (i >= srcs.length) return;
             const s = document.createElement("script");
-            s.src = src;
+            s.src = srcs[i];
+            s.onload = () => loadNext(i + 1);
             document.head.appendChild(s);
-        });
+        }
+        loadNext(0);
     }
-    </script>
+</script>
 </body>
 
 </html>
