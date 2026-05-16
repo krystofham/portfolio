@@ -4,8 +4,6 @@
    ═══════════════════════════════════════════════════════ */
 document.addEventListener("DOMContentLoaded", () => {
 gsap.registerPlugin(ScrollTrigger, CustomEase);
-if (!window.matchMedia("(pointer: coarse)").matches) {
-
 CustomEase.create("expo.out", "M0,0 C0.06,0.975 0.15,1 1,1");
 CustomEase.create("back.pop", "M0,0 C0.05,0 0.157,0.771 0.25,0.85 0.354,0.935 0.44,1.046 0.534,1.059 0.661,1.074 0.758,1.003 1,1");
 
@@ -175,47 +173,4 @@ if (wordInner) {
         { y: "0%", duration: 1.1, ease: "expo.out", delay: 0.1 }
     );
 }
-
-} // ← zavírá if (!pointer coarse)
-
-/* ── Lightbox — funguje i na mobilu ──────────────────── */
-const lightbox  = document.getElementById("lightbox");
-const lbImg     = lightbox?.querySelector("img");
-const lbCaption = lightbox?.querySelector(".lightbox__caption");
-const lbClose   = lightbox?.querySelector(".lightbox__close");
-let lbOpen = false;
-
-function openLightbox(src, alt) {
-    if (lbOpen || !lightbox) return;
-    lbOpen = true;
-    lbImg.src = src;
-    lbImg.alt = alt;
-    if (lbCaption) lbCaption.textContent = alt;
-    lightbox.classList.add("open");
-    document.body.style.overflow = "hidden";
-}
-
-function closeLightbox() {
-    if (!lbOpen || !lightbox) return;
-    lightbox.classList.remove("open");
-    lbImg.src = "";
-    lbOpen = false;
-    document.body.style.overflow = "";
-}
-
-document.querySelectorAll(".gallery-item").forEach(item => {
-    item.addEventListener("click", () => {
-        const img = item.querySelector("img");
-        if (!img) return;
-        openLightbox(img.dataset.full || img.src, img.alt);
-    });
-    item.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); item.click(); }
-    });
-});
-
-lbClose?.addEventListener("click", closeLightbox);
-lightbox?.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
-
 }); 
