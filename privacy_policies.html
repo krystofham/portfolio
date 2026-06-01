@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <script>if(localStorage.getItem("mode")==="dark")document.documentElement.classList.add("dark-mode");</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zásady ochrany osobních údajů — Kryštof Ham">
+    <meta name="author" content="Kryštof Ham">
+    <title>Zásady ochrany osobních údajů — Kryštof Ham</title>
+    <script src="darkmode.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Základní styl pro obsah stránky */
+        .privacy-content {
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            line-height: 1.7;
+            color: var(--text, #111);
+        }
+
+        .dark-mode .privacy-content {
+            color: var(--text, #f0f0f0);
+        }
+
+        .privacy-content h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text, #111);
+        }
+
+        .dark-mode .privacy-content h1 {
+            color: var(--text, #f0f0f0);
+        }
+
+        .privacy-content h2 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text, #111);
+        }
+
+        .dark-mode .privacy-content h2 {
+            color: var(--text, #f0f0f0);
+        }
+
+        .privacy-content p {
+            margin-bottom: 1rem;
+        }
+
+        .privacy-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .privacy-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .privacy-content a {
+            color: var(--accent, #444);
+            text-decoration: underline;
+        }
+
+        .dark-mode .privacy-content a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR (stejný jako v contact.html) -->
+    <nav class="navbar" aria-label="Hlavní navigace">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__logo">KH</a>
+            <div class="navbar__links">
+                <a href="index.html">Úvod</a>
+                <a href="about.html">O mně</a>
+                <a href="projects.html">Projekty</a>
+                <a href="gallery.html">Galerie</a>
+                <a href="contact.html">Kontakt</a>
+            </div>
+            <button class="dark-toggle" id="mode-switcher" aria-label="Přepnout barevný režim">
+                <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                </svg>
+                <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round
+                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                </svg>
+            </button>
+            <button class="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE NAV (stejný jako v contact.html) -->
+    <div class="mobile-nav" role="dialog" aria-label="Mobilní navigace">
+        <a href="index.html">Úvod</a>
+        <a href="about.html">O mně</a>
+        <a href="projects.html">Projekty</a>
+        <a href="gallery.html">Galerie</a>
+        <a href="contact.html">Kontakt</a>
+    </div>
+
+    <main>
+        <header class="page-header">
+            <h1>Zásady ochrany osobních údajů</h1>
+        </header>
+
+        <div class="container">
+            <div class="privacy-content">
+                <p>
+                    Tyto zásady ochrany osobních údajů popisují, jak Kryštof Ham (dále jen „správce“) nakládá s vašimi osobními údaji,
+                    které poskytnete prostřednictvím kontaktního formuláře na těchto webových stránkách.
+                </p>
+
+                <h2>1. Správce osobních údajů</h2>
+                <p>
+                    Správcem vašich osobních údajů je Kryštof Ham, který je zodpovědný za zpracování vašich údajů v souladu
+                    s platnými právními předpisy, zejména s <a href="https://www.uoou.cz/" target="_blank" rel="noopener noreferrer">Obecným nařízením o ochraně osobních údajů (GDPR)</a>.
+                </p>
+
+                <h2>2. Jaké osobní údaje zpracováváme</h2>
+                <p>
+                    Prostřednictvím kontaktního formuláře zpracováváme následující osobní údaje:
+                </p>
+                <ul>
+                    <li>Jméno a příjmení</li>
+                    <li>E-mailová adresa</li>
+                    <li>Text zprávy</li>
+                </ul>
+                <p>
+                    Tyto údaje jsou zpracovávány výhradně za účelem odpovědi na vaši zprávu.
+                </p>
+
+                <h2>3. Právní důvod zpracování</h2>
+                <p>
+                    Zpracování vašich osobních údajů probíhá na základě vašeho <strong>výslovného souhlasu</strong> uděleného zaškrtnutím políčka
+                    „Souhlasím s zásadami ochrany osobních údajů“ v kontaktním formuláři. Tento souhlas je dobře informovaný, svobodný a specifický.
+                </p>
+
+                <h2>4. Jak dlouho uchováváme vaše údaje</h2>
+                <p>
+                    Vaše osobní údaje uchováváme po dobu nezbytně nutnou k vyřízení vašeho dotazu, maximálně však po dobu 1 roku od odeslání formuláře.
+                    Po této době jsou údaje automaticky smazány.
+                </p>
+
+                <h2>5. Předávání údajů třetím stranám</h2>
+                <p>
+                    Vaše údaje jsou odesílány prostřednictvím služby <a href="https://formspree.io/" target="_blank" rel="noopener noreferrer">Formspree</a>,
+                    která slouží jako zprostředkovatel pro doručení zpráv ze kontaktního formuláře. Formspree zpracovává údaje v souladu
+                    s vlastními <a href="https://formspree.io/legal/privacy" target="_blank" rel="noopener noreferrer">zásadami ochrany osobních údajů</a>.
+                    Vaše údaje nejsou předávány žádným dalším třetím stranám.
+                </p>
+
+                <h2>6. Vaše práva</h2>
+                <p>
+                    Máte následující práva v souvislosti se zpracováním svých osobních údajů:
+                </p>
+                <ul>
+                    <li><strong>Právo na přístup</strong> – Máte právo požadovat potvrzení, zda zpracováváme vaše osobní údaje, a přístup k těmto údajům.</li>
+                    <li><strong>Právo na opravu</strong> – Máte právo požadovat opravu nepřesných osobních údajů.</li>
+                    <li><strong>Právo na výmaz</strong> – Máte právo požadovat výmaz svých osobních údajů, pokud již nejsou potřebné pro účely, pro které byly shromážděny.</li>
+                    <li><strong>Právo na omezení zpracování</strong> – Máte právo požadovat omezení zpracování svých osobních údajů.</li>
+                    <li><strong>Právo odvolat souhlas</strong> – Máte právo kdykoli odvolat svůj souhlas se zpracováním osobních údajů.</li>
+                </ul>
+                <p>
+                    Pro uplatnění svých práv nás kontaktujte na e-mailové adrese <a href="mailto:krystof.ham@proton.me">krystof.ham@proton.me</a>.
+                </p>
+
+                <h2>7. Zabezpečení údajů</h2>
+                <p>
+                    Vaše osobní údaje chráníme vhodnými technickými a organizačními opatřeními proti neoprávněnému přístupu, úpravě, ztrátě nebo zničení.
+                </p>
+
+                <h2>8. Změny těchto zásad</h2>
+                <p>
+                    Tyto zásady ochrany osobních údajů mohou být občas aktualizovány. O jakýchkoli významných změnách vás budeme informovat
+                    prostřednictvím těchto webových stránek.
+                </p>
+
+                <h2>9. Kontakt</h2>
+                <p>
+                    Pokud máte jakékoli dotazy týkající se ochrany osobních údajů, kontaktujte nás na <a href="mailto:krystof.ham@proton.me">krystof.ham@proton.me</a>.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER (stejný jako v contact.html) -->
+    <footer class="footer" role="contentinfo">
+        <div class="footer__inner">
+            <div>
+                <p class="footer__brand">Kryštof Ham</p>
+                <p class="footer__copy">© 2026</p>
+            </div>
+            <div class="footer__links">
+                <a href="https://www.linkedin.com/in/kry%C5%A1tof-ham-bb79533a1/" class="footer__icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                    <svg width="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.266 2.37 4.266 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/krystofham/" class="footer__icon" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+                    <svg width="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                    </svg>
+                </a>
+                <a href="mailto:krystof.ham@proton.me" class="footer__icon" aria-label="Email">
+                    <svg width="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 13.065 1.5 6.75V18A1.5 1.5 0 0 0 3 19.5h18A1.5 1.5 0 0 0 22.5 18V6.75L12 13.065ZM21 4.5H3A1.5 1.5 0 0 0 1.5 6l10.5 6.435L22.5 6A1.5 1.5 0 0 0 21 4.5Z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <button id="scrollTopBtn" title="Nahoru" aria-label="Zpět nahoru">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
+
+</body>
+</html>

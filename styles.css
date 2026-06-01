@@ -1587,3 +1587,39 @@ tbody td {
 .flex-center { display: flex; align-items: center; justify-content: center; }
 .gap-1 { gap: 0.5rem; }
 .gap-2 { gap: 1rem; }
+
+/* Styl pro checkbox */
+.form-group label[for="privacy"] {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    font-weight: normal;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--text, #111);
+    cursor: pointer;
+}
+
+.dark-mode .form-group label[for="privacy"] {
+    color: var(--text, #f0f0f0);
+}
+
+.form-group label[for="privacy"] a {
+    color: var(--accent, #444);
+    text-decoration: underline;
+}
+
+.dark-mode .form-group label[for="privacy"] a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent, #444);
+}
+
+.dark-mode .form-group input[type="checkbox"] {
+    accent-color: rgba(255, 255, 255, 0.7);
+}
