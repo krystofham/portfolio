@@ -1,44 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
+  const modeSwitcher = document.getElementById("mode-switcher");
 
-/* ────────────────────────────────────────
-    1. DARK MODE
-  ──────────────────────────────────────── */
-const modeSwitcher = document.getElementById("mode-switcher");
-const body = document.body;
-
-if (localStorage.getItem("mode") === "dark") {
-document.documentElement.classList.add("dark-mode");}
-
-if (modeSwitcher) {
-  modeSwitcher.addEventListener("click", () => {
+  if (modeSwitcher) {
+    modeSwitcher.addEventListener("click", () => {
       document.documentElement.classList.toggle("dark-mode");
-      localStorage.setItem("mode", document.documentElement.classList.contains("dark-mode") ? "dark" : "light");
-  });
-}
-
-/* ────────────────────────────────────────
-    2. NAVBAR — scroll state + active link
-  ──────────────────────────────────────── */
-const navbar = document.querySelector(".navbar");
-
-if (navbar) {
-    const onScroll = () => {
-    navbar.classList.toggle("scrolled", window.scrollY > 10);
-};
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    const currentPage = location.pathname.split("/").pop() || "index.html";
-    document.querySelectorAll(".navbar__links a, .mobile-nav a").forEach(link => {
-      const href = link.getAttribute("href");
-      if (href === currentPage || (currentPage === "" && href === "index.html")) {
-        link.classList.add("active");
-      }
+      localStorage.setItem(
+        "mode",
+        document.documentElement.classList.contains("dark-mode") ? "dark" : "light"
+      );
     });
   }
 
-  /* ────────────────────────────────────────
-     3. HAMBURGER MENU
-  ──────────────────────────────────────── */
   const hamburger = document.querySelector(".hamburger");
   const mobileNav = document.querySelector(".mobile-nav");
 
@@ -46,93 +19,64 @@ if (navbar) {
     hamburger.addEventListener("click", () => {
       const open = hamburger.classList.toggle("open");
       mobileNav.classList.toggle("open", open);
+      hamburger.setAttribute("aria-expanded", String(open));
       body.style.overflow = open ? "hidden" : "";
     });
 
-    mobileNav.querySelectorAll("a").forEach(link => {
+    mobileNav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         hamburger.classList.remove("open");
         mobileNav.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
         body.style.overflow = "";
       });
     });
   }
 
-  /* ────────────────────────────────────────
-     4. SCROLL-TO-TOP BUTTON
-  ──────────────────────────────────────── */
-  const scrollBtn = document.getElementById("scrollTopBtn");
+  const form = document.getElementById("contactForm");
+  const submitBtn = document.getElementById("submitBtn");
+  const status = document.getElementById("formStatus");
+  const successScr = document.getElementById("successScreen");
+  const FORMSPREE_URL = "https://formspree.io/f/mrerkord";
 
-  if (scrollBtn) {
-    window.addEventListener("scroll", () => {
-      scrollBtn.classList.toggle("visible", window.scrollY > 400);
-    }, { passive: true });
+  if (form && submitBtn && status) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "";
 
-    scrollBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
 
+      if (!name || !email || !message) {
+        status.textContent = "Vyplň prosím všechna pole.";
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.textContent = "Zadej platnou e-mailovou adresu.";
+        return;
+      }
 
+      submitBtn.disabled = true;
 
-
-  /* ────────────────────────────────────────
-     5. HERO TYPE EFFECT (index only)
-  ──────────────────────────────────────── */
-  const heroName = document.querySelector(".hero__name");
-
-  if (heroName) {
-    // Stagger children if any spans exist
-    const spans = heroName.querySelectorAll("span");
-    spans.forEach((span, i) => {
-      span.style.animationDelay = `${i * 0.08}s`;
-    });
-  }
-
-  /* ────────────────────────────────────────
-     6. TABLE — sort on header click (simple)
-  ──────────────────────────────────────── */
-  document.querySelectorAll("table.sortable").forEach(table => {
-    const headers = table.querySelectorAll("thead th");
-    headers.forEach((th, col) => {
-      th.style.cursor = "pointer";
-      th.title = "Seřadit";
-      let asc = true;
-
-      th.addEventListener("click", () => {
-        const tbody = table.querySelector("tbody");
-        const rows = Array.from(tbody.querySelectorAll("tr"));
-
-        rows.sort((a, b) => {
-          const aText = a.cells[col]?.textContent.trim() ?? "";
-          const bText = b.cells[col]?.textContent.trim() ?? "";
-          return asc ? aText.localeCompare(bText, "cs") : bText.localeCompare(aText, "cs");
+      try {
+        const res = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
         });
 
-        asc = !asc;
-        rows.forEach(row => tbody.appendChild(row));
-
-        headers.forEach(h => h.removeAttribute("data-sort"));
-        th.dataset.sort = asc ? "desc" : "asc";
-      });
-    });
-  });
-
-  /* ────────────────────────────────────────
-     7. SMOOTH LINK TRANSITIONS
-  ──────────────────────────────────────── */
-  if ("startViewTransition" in document) {
-    document.querySelectorAll("a[href]").forEach(link => {
-      const href = link.getAttribute("href");
-      if (!href || href.startsWith("#") || href.startsWith("http") || href.startsWith("mailto")) return;
-
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        document.startViewTransition(() => {
-          window.location.href = href;
-        });
-      });
+        if (res.ok) {
+          form.style.display = "none";
+          if (successScr) successScr.hidden = false;
+        } else {
+          status.textContent = "Něco se pokazilo. Zkus to znovu.";
+        }
+      } catch {
+        status.textContent = "Chyba připojení. Zkontroluj internet a zkus to znovu.";
+      } finally {
+        submitBtn.disabled = false;
+      }
     });
   }
-
 });

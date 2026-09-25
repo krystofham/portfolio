@@ -1,207 +1,200 @@
 <!DOCTYPE html>
 <html lang="cs">
-
 <head>
-    <script>if(localStorage.getItem("mode")==="dark")document.documentElement.classList.add("dark-mode");</script>
+    <script>if (localStorage.getItem("mode") === "dark") document.documentElement.classList.add("dark-mode");</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Kryštof Ham — IT student, frontend developer & Python enthusiast from Ostrava.">
     <meta name="author" content="Kryštof Ham">
-    <meta name="keywords" content="Kryštof Ham, portfolio, frontend, Python, student, Ostrava">
     <title>Kryštof Ham</title>
-    <script src="darkmode.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <a href="#main-content" class="skip-link">Přejít na obsah</a>
 
     <nav class="navbar" aria-label="Hlavní navigace">
-        <div class="navbar__inner">
-            <a href="index.html" class="navbar__logo" aria-label="Kryštof Ham — domovská stránka">KH</a>
-            <div class="navbar__links">
-                <a href="index.html" aria-current="page">Úvod</a>
-                <a href="about.html">O mně</a>
-                <a href="projects.html">Projekty</a>
-                <a href="gallery.html">Galerie</a>
-                <a href="contact.html">Kontakt</a>
-            </div>
-            <button class="dark-toggle" id="mode-switcher" aria-label="Přepnout barevný režim">
-                <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
-                </svg>
-                <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
-                </svg>
-            </button>
-            <button class="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-nav">
-                <span></span><span></span><span></span>
-            </button>
+        <a href="#top" class="logo">KH</a>
+        <div class="nav-links">
+            <a href="#about-me">O mně</a>
+            <a href="#projects">Projekty</a>
+            <a href="#contact">Kontakt</a>
         </div>
+        <button class="dark-toggle" id="mode-switcher" aria-label="Přepnout barevný režim">
+            <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+            </svg>
+            <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+            </svg>
+        </button>
+        <button class="hamburger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-nav">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
 
     <div class="mobile-nav" id="mobile-nav" role="dialog" aria-label="Mobilní navigace">
-        <a href="index.html">Úvod</a>
-        <a href="about.html">O mně</a>
-        <a href="projects.html">Projekty</a>
-        <a href="gallery.html">Galerie</a>
-        <a href="contact.html">Kontakt</a>
+        <a href="#about-me">O mně</a>
+        <a href="#projects">Projekty</a>
+        <a href="#contact">Kontakt</a>
     </div>
 
     <main id="main-content">
-        <section class="hero" aria-label="Úvodní sekce — Kryštof Ham">
-            <div class="hero__grid-lines" aria-hidden="true"></div>
-            <div class="hero__inner">
-                <h1 class="hero__name">
-                    Kryštof<br><em>Ham</em>
-                </h1>
-                <div class="hero__center">
-                    <div class="hero__card">
-                        <p class="hero__card-label">Developer</p>
-                        <div class="hero__card-roles">
-                            <span class="hero__role">Frontend</span>
-                            <div class="hero__divider"></div>
-                            <span class="hero__role">Python</span>
-                        </div>
-                    </div>
-                    <div class="contact__button">
-                        <a href="contact.html" id="contact__main__page">Kontaktuj mě!</a>
-                    </div>
-                </div>
-                <div class="hero__bottom">
-                    <div class="hero__scroll" aria-hidden="true">
-                        <div class="hero__scroll-line"></div>
-                    </div>
-                </div>
-            </div>
+        <header class="hero" id="top">
+            <h1>Kryštof Ham</h1>
+            <p id="heroText">Frontend <br>Python <br> student SPŠEI Ostrava</p>
+            <div id="leftbottom">
+              <div>
+                <span>H</span><a href="mailto:krystof.ham@proton.me">Mail</a>
+              </div>  
+              <div>
+                <span>A</span><a href="https://github.com/krystofham/" target="_blank" rl="noopener noreferrer">GitHub</a>
+              </div>
+              <div>
+                <span>M</span><a href="https://www.linkedin.com/in/kry%C5%A1tof-ham-bb79533a1/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              </div>
+        </div>
+
+        </header>
+
+        <section id="about-me">
+            <h2>O mně</h2>
+            <p>
+                Jsem student <a href="https://www.spseiostrava.cz/cs/" target="_blank" rel="noopener noreferrer">Střední průmyslové školy elektrotechniky a informatiky</a>.
+                Zajímá mě webový vývoj, kybernetická bezpečnost a Linux.
+            </p>
+            <p>Jazyky: čeština, angličtina B2, španělština A1, němčina A1</p>
+            <p>Zájmy: florbal, matematika a fyzika, formule 1, knihy, homelab</p>
+
+            <h3>Dovednosti</h3>
+            <ul class="strong">
+                <li>HTML</li>     
+                <li>CSS, LESS</li>
+                <li>JavaScript, ReactJS</li>
+                <li>Python</li>
+                <li>Flask, FastAPI</li>
+                <li>NumPy, Pandas, Scikit-learn, Scipy, MatPlotLib</li>
+                <li>Git, GitHub</li>
+                <li>SQL, MS access</li>
+                <li>C</li>
+            </ul>
+
+            <h3>Certifikace</h3>
+            <ul>
+                <li><a href="https://www.freecodecamp.org/certification/krystofham/b1-english-for-developers" target="_blank" rel="noopener noreferrer">B1 English for Developers — freeCodeCamp</a></li>
+                <li><a href="https://www.freecodecamp.org/certification/krystofham/responsive-web-design-v9" target="_blank" rel="noopener noreferrer">Responsive Web Design — freeCodeCamp</a></li>
+                <li><a href="https://www.freecodecamp.org/certification/krystofham/python-v9" target="_blank" rel="noopener noreferrer">Python — freeCodeCamp</a></li>
+                <li><a href="https://www.kaggle.com/learn/certification/krystofham/pandas" target="_blank" rel="noopener noreferrer">Pandas, NumPy — Kaggle</a></li>
+                <li><a href="https://www.credly.com/badges/bf6a0f85-0c2f-4bab-acab-2d3a6453d658/linked_in_profile" target="_blank">Cisco Linux essentials</a></li>
+                <li><a href="https://www.credly.com/badges/7fb04af7-8bfe-41fa-9240-7b6192c7f583/linked_in_profile" target="_blank">Cisco Ethical hacker</a></li>
+            </ul>
+
+            <h3>Soutěže</h3>
+            <ul>
+                <li>3. místo - Office aréna 2025, celorepublikové kolo (<a href="https://soutezarena.cz/soutez/finale/vysledky-finale/" target="_blank" rel="noopener noreferrer">výsledky</a>)</li>
+                <li>1. místo - Pangea, mezirepublikové srovnání (<a href="https://drive.google.com/drive/u/0/folders/1Gm64XfbIMFXJlwH_omer7OEyvSWeBQXF" target="_blank" rel="noopener noreferrer">certifikát</a>)</li>
+                <li>Úspěšný řešitel — okresní kolo v programování</li>
+                <li>5. místo - Tematické kódování (<a href="https://web.archive.org/web/20250328110749/https://soutez.tib.cz/souteze/kodovani/260-rocnik-3-2024-2025" target="_blank" rel="noopener noreferrer">výsledky - Wayback machine</a>)</li>
+                <li>Logická olympiáda — lépe než 82 % účastníků</li>
+                <li>Haxagon SKIRMISH — lépe než 98,54 % účastníků</li>
+            </ul>
+
+            <h3>Semináře</h3>
+            <ul>
+                <li><a href="https://fykos.cz/poradi/39" target="_blank" rel="noopener noreferrer">Fyzikální korespondenční seminář (FYKOS), 2025/26</a></li>
+                <li><a href="https://ksp.mff.cuni.cz/z/ulohy/38/vysledky5.html" target="_blank" rel="noopener noreferrer">Korespondenční seminář z programování (KSP MFF UK), 2025/26</a></li>
+            </ul>
+            <h3>Další projekty</h3>
+            Další projekty, na kterých jsem se nějak podílel. Ať už formou opravy dokumentace, patchů a různých malinkých oprav.
+            <ul>
+              <li>FastF1 issue #864 (<a href="https://github.com/krystofham/ERS_battery_problem" target="_blank" rel="noopener noreferrer">GitHub</a><)</li>
+              <li>ViMax (spíše symbolická oprava - <a href="https://github.com/krystofham/ViMax/commit/42be4e6cdc9606881f8b753bd23d1d71d810a1ac">GitHub</a>)</li>
+              <li>DIY plane (<a href="https://github.com/krystofham/DIY-plane/compare/main...rayanmhd311-tech%3ADIY-plane%3Amain">Github</a>)</li>
+              <li>Wkill (<a href="https://github.com/krystofham/wkill">GitHub</a>)</li>
+              <li>Oprava kódu na Ultimate Tic tac toe mého kamaráda (<a href="https://github.com/krystofham/Ultimate-Tic-Tac-Toe">GitHub</a>)</li>
+              <li>Fixnutí pro FYKOS experiment (<a href="https://github.com/krystofham/drtivy-dopad/commit/903d1c7ae4e6d5b3a37b749e7413cd11149cc45b">GitHub</a>)</li>
+            </ul>
         </section>
 
-        <section class="section" aria-labelledby="quick-links-heading">
-            <div class="container">
-                <h2 id="quick-links-heading" class="visually-hidden">Rychlé odkazy</h2>
-                <div class="grid-3">
-                    <a href="about.html" class="card reveal" style="display:block;">
-                        <p class="label mb-2" aria-hidden="true">01</p>
-                        <h3>O mně</h3>
-                        <p class="text-muted mt-2" style="font-size:0.9rem;">Dovednosti, certifikáty, soutěže a plány.</p>
-                    </a>
-                    <a href="projects.html" class="card reveal" style="display:block;">
-                        <p class="label mb-2" aria-hidden="true">02</p>
-                        <h3>Projekty</h3>
-                        <p class="text-muted mt-2" style="font-size:0.9rem;">Ukázky reálných projektů s popisem a GitHuby.</p>
-                    </a>
-                    <a href="gallery.html" class="card reveal" style="display:block;">
-                        <p class="label mb-2" aria-hidden="true">03</p>
-                        <h3>Galerie</h3>
-                        <p class="text-muted mt-2" style="font-size:0.9rem;">Fotky z akcí, soutěží a studia.</p>
-                    </a>
-                </div>
-            </div>
+        <section id="projects">
+            <h2>Projekty</h2>
+            <div class="projects">
+                <article>
+                    <h3>F1 simulátor</h3>
+                    <p>Manažerský simulátor F1 sezóny. FastAPI + React. Stále ve vývoji. Oceněn v soutěži YH4F (FSFE Europe) jako soutěž umístěný v užším výběru.</p>
+                    <p>Python, ReactJS, FastAPI</p>
+                    <p><a href="https://github.com/krystofham/F1_game" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+                    <p><a href="https://github.com/krystofham/F1_game/releases"> Download</a></p>
+                </article>
+                <article>
+                  <h3>Top down shooter</h3>
+                  <p>Hra z leteckého pohledu, kde hrajete v týmech proti sobě mnoho kol (kolo se vyhraje po zabití hráče). Pro 1 hráče</p>
+                  <p>Godot</p>
+                  <p><a href="https://krystofham.itch.io/top-down-shooter">Stáhnout</a></p>
+                  <p><a href="https://github.com/krystofham/TopDownShooter">GitHub</a></p>
+                </article>
+                <article>
+                    <h3>ERS Boost Zone Estimator</h3>
+                    <p>Odhad ERS módů z telemetrie FastF1 fyzikálním silovým modelem. Issue #864 ve FastF1.</p>
+                    <p>Python, FastF1</p>
+                    <p><a href="https://github.com/krystofham/ERS_battery_problem" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+                </article>
+                <article>
+                    <h3>Webzdarma Adblock</h3>
+                    <p>Rozšíření pro Firefox, které blokuje reklamy na free webhostingu Webzdarma.</p>
+                    <p>JavaScript</p>
+                    <p><a href="https://github.com/krystofham/webzdarma-adblock" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+                </article>
+                <article>
+                  <h3>Raw code highlister</h3>
+                  <p>Rozšíření pro firefox, které bere surový kód a zvýrazňuje základní syntaxi.</p>
+                  <p>Javascript</p>
+                  <p><a href="https://addons.mozilla.org/en-GB/firefox/addon/raw-code-highlighter/">Firefox extension</a></p>
+                  <p><a href="https://github.com/krystofham/syntax-higlight">GitHub</a></p>
+                </article>
+                <article>
+                  Mnoho projektů se sem nevlezlo a mnoho není doděláno. Sledujte můj GH a LinkedIn a získejte aktuální informace o vývoji.
+                </article>    
+        </div>
         </section>
 
-        <section style="padding: 30px;" class="section" aria-labelledby="info-heading">
-            <div class="section-head reveal">
-                <h2 id="info-heading">Rychlé info</h2>
-            </div>
-            <div class="table-wrap reveal">
-                <table aria-label="Kontaktní informace přehled">
-                    <thead>
-                        <tr>
-                            <th scope="col">Platforma</th>
-                            <th scope="col">Adresa / odkaz</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Email</strong></td>
-                            <td><a href="mailto:krystof.ham@proton.me">krystof.ham@proton.me</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>LinkedIn</strong></td>
-                            <td><a href="https://www.linkedin.com/in/kry%C5%A1tof-ham-bb79533a1/" target="_blank"  rel="noopener noreferrer">linkedin.com/in/kryštof-ham</a></td>
-                        </tr>
-                        <tr>
-                            <td><strong>GitHub</strong></td>
-                            <td><a href="https://github.com/krystofham/" target="_blank"  rel="noopener noreferrer">github.com/krystofham</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        <section id="contact">
+            <h2>Kontakt</h2>
+            <ul>
+                <li>Email: <a href="mailto:krystof.ham@proton.me">krystof.ham@proton.me</a></li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/kry%C5%A1tof-ham-bb79533a1/" target="_blank" rel="noopener noreferrer">kryštof-ham</a></li>
+                <li>GitHub: <a href="https://github.com/krystofham/" target="_blank" rel="noopener noreferrer">@krystofham</a></li>
+            </ul>
 
-        <section style="padding-bottom: clamp(3rem,8vw,6rem);" aria-labelledby="tech-heading">
-            <div class="container">
-                <p class="label mb-3 reveal" id="tech-heading">Technologie</p>
-                <p class="label mb-3 reveal">Jazyky</p>
-                <div class="tags reveal" role="list">
-                    <span class="tag" role="listitem">HTML</span>
-                    <span class="tag" role="listitem">CSS</span>
-                    <span class="tag" role="listitem">JavaScript</span>
-                    <span class="tag" role="listitem">Python</span>
-                    <span class="tag" role="listitem">Flask</span>
-                    <span class="tag" role="listitem">Git</span>
-                    <span class="tag" role="listitem">SQL</span>
-                    <span class="tag" role="listitem">C</span>
-                    <span class="tag" role="listitem">BurpSuite</span>
-                    <span class="tag" role="listitem">Owasp juice shop</span>
-
-                </div>
-                <p class="label mb-3 reveal" style="margin-top: 10px;">Software</p>
-                <div class="tags reveal" role="list">
-                    <span class="tag" role="listitem">VSCode</span>
-                    <span class="tag" role="listitem">Git</span>
-                    <span class="tag" role="listitem">Vim</span>
-                    <span class="tag" role="listitem">EndevourOS</span>
-                    <span class="tag" role="listitem">Kali</span>
-                    <span class="tag" role="listitem">Claude</span>
-                    <span class="tag" role="listitem">Polypane</span>
-                </div>
-            </div>
-        </section>
+            <form id="contactForm" novalidate>
+                <p>
+                    <label for="name">Jméno</label><br>
+                    <input type="text" id="name" name="name" autocomplete="name" required>
+                </p>
+                <p>
+                    <label for="email">E-mail</label><br>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </p>
+                <p>
+                    <label for="message">Zpráva</label><br>
+                    <textarea id="message" name="message" required></textarea>
+                </p>
+                <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                <p id="btnForm">
+                    <button type="submit" id="submitBtn">Odeslat</button>
+                </p>
+                <p id="formStatus" role="alert" aria-live="polite"></p>
+                <definitelynotp id="successScreen" hidden>Odesláno. Díky za zprávu.</definitelynotp>
+            </form>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer__inner">
-            <div>
-                <p class="footer__brand">Kryštof Ham</p>
-                <p class="footer__copy">© 2026</p>
-            </div>
-            <nav class="footer__links" aria-label="Sociální sítě">
-                <a href="https://www.linkedin.com/in/kry%C5%A1tof-ham-bb79533a1/" class="footer__icon" aria-label="LinkedIn" target="_blank"  rel="noopener noreferrer">
-                    <svg width="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.266 2.37 4.266 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-                <a href="https://github.com/krystofham/" class="footer__icon" aria-label="GitHub" target="_blank"  rel="noopener noreferrer">
-                    <svg width="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                </a>
-            </nav>
-        </div>
+    <footer>
+        <p>Kryštof Ham, 2026</p>
     </footer>
 
-    <button id="scrollTopBtn" title="Zpět nahoru" aria-label="Přejít na začátek stránky">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
-    </button>
-        <script>
-    if (!window.matchMedia("(pointer: coarse)").matches) {
-        const srcs = [
-            "https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js",
-            "https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js",
-            "https://cdn.jsdelivr.net/npm/gsap@3/dist/CustomEase.min.js",
-            "gsap.js"
-        ];
-        function loadNext(i) {
-            if (i >= srcs.length) return;
-            const s = document.createElement("script");
-            s.src = srcs[i];
-            s.onload = () => loadNext(i + 1);
-            document.body.appendChild(s);
-        }
-        loadNext(0);
-    }
-    </script>
+    <script src="darkmode.js" defer></script>
 </body>
 </html>
